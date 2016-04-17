@@ -1,7 +1,19 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+
+
+    <!--!!!!!!!!!!!!!!!
+        Note! The Theme.AppCompat.Light.DarkActionBar is not working for everything
+        because the Action Bar is deprecated. We'll leave this here for now by adding
+         Base in front of it and it should work. However, we will be changing to using
+         Toolbar in the near future (I just want a commit that works for everyone).
+
+         See: https://blog.xamarin.com/android-tips-hello-toolbar-goodbye-action-bar/
+         http://stackoverflow.com/questions/33742114/the-following-classes-could-not-be-found-android-support-v7-internal-app-window
+
+    -->
+    <style name="AppTheme" parent="Base.Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
