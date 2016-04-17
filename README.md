@@ -1,2 +1,3 @@
 # GauchoSell
 CS48 project - Application to replace Free and For Sale page on Facebook.
+GauchoSell is an Android mobile app that will allow students to easily sell and bid on items within their own community. This app will include features such as filtering by category or price ranges, monitoring the current bid for each item, allowing sellers and buyers to back out of bids, and many other features.
