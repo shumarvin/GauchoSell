@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="56dp"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
+        android:weightSum="1">
+
+        <ImageView android:src="@drawable/abc_btn_check_to_on_mtrl_015"
+            android:layout_width="316dp"
+            android:layout_height="72dp"
+            android:layout_marginBottom="24dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.45" />
+
+        <!-- First Name -->
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/firstName"
+                android:hint="First Name" />
+
+        </LinearLayout>
+
+        <!-- Last Name -->
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/lastName"
+                android:hint="Last Name" />
+
+        </LinearLayout>
+
+        <!-- DROP DOWN FOR BIRTH MONTH/YEAR instead -->
+
+        <!-- Birth Month -->
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text|date"
+                android:ems="10"
+                android:id="@+id/birthMonth"
+                android:hint="Birth Month" />
+
+        </LinearLayout>
+
+        <!-- Birth Year -->
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text|date"
+                android:ems="10"
+                android:id="@+id/birthYear"
+                android:hint="Birth Year" />
+
+        </LinearLayout>
+
+        <!-- Email -->
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:ems="10"
+                android:id="@+id/newEmail"
+                android:hint="myemail@email.com" />
+
+        </LinearLayout>
+
+        <TextView android:id="@+id/signupLink"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:text="Sign Up"
+            android:gravity="center"
+            android:textSize="16sp"/>
+
+    </LinearLayout>
+</ScrollView>
