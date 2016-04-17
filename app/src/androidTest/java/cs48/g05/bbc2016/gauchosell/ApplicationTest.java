@@ -1,4 +1,4 @@
-package com.example.shuma_000.gauchosell;
+package cs48.g05.bbc2016.gauchosell;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

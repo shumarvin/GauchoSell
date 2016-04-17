@@ -5,7 +5,7 @@ android {
     buildToolsVersion "23.0.3"
 
     defaultConfig {
-        applicationId "com.example.shuma_000.gauchosell"
+        applicationId "cs48.g05.bbc2016.gauchosell"
         minSdkVersion 15
         targetSdkVersion 23
         versionCode 1
@@ -39,5 +39,6 @@ dependencies {
     compile 'com.firebase:firebase-client-android:2.3.1+'
 
     /*Butterknife*/
+    //TODO: Consider this for removal, do we want to use butterknife?
     compile 'com.jakewharton:butterknife:7.0.1'
 }

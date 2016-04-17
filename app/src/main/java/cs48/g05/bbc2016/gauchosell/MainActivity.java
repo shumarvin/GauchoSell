@@ -1,4 +1,4 @@
-package com.example.shuma_000.gauchosell;
+package cs48.g05.bbc2016.gauchosell;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
