@@ -55,21 +55,28 @@
 
         </LinearLayout>
 
-        <Button
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Login"
-            android:layout_marginTop="24dp"
-            android:layout_marginBottom="24dp"
-            android:id="@+id/login_button" />
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <TextView android:id="@+id/signupLink"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            android:text="Sign Up"
-            android:gravity="center"
-            android:textSize="16sp"/>
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Login"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="24dp"
+                android:id="@+id/loginButton" />
+
+            <TextView android:id="@+id/signupLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:clickable="true"
+                android:text="Sign Up"
+                android:layout_gravity="center"
+                android:textSize="16sp" />
+        </LinearLayout>
 
     </LinearLayout>
 </ScrollView>
