@@ -32,10 +32,11 @@
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
                 android:ems="10"
-                android:id="@+id/firstName"
+                android:id="@+id/FirstNameSignUp"
                 android:hint="First Name" />
 
         </LinearLayout>
+
 
         <!-- Last Name -->
 
@@ -49,14 +50,11 @@
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
                 android:ems="10"
-                android:id="@+id/lastName"
+                android:id="@+id/LastNameSignUp"
                 android:hint="Last Name" />
 
         </LinearLayout>
 
-        <!-- DROP DOWN FOR BIRTH MONTH/YEAR instead -->
-
-        <!-- Birth Month -->
 
         <LinearLayout
             android:orientation="horizontal"
@@ -64,56 +62,81 @@
             android:layout_height="match_parent">
 
             <EditText
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="text|date"
-                android:ems="10"
-                android:id="@+id/birthMonth"
-                android:hint="Birth Month" />
+                android:id="@+id/BirthMonthSignUp"
+                android:text="Birth Month" />
 
-        </LinearLayout>
-
-        <!-- Birth Year -->
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            <NumberPicker
+                android:layout_width="46dp"
+                android:layout_height="39dp"
+                android:id="@+id/BirthMonthPicker"
+                android:layout_gravity="right"
+                android:orientation="horizontal" />
 
             <EditText
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="text|date"
-                android:ems="10"
-                android:id="@+id/birthYear"
-                android:hint="Birth Year" />
+                android:id="@+id/BirthYearSignUp"
+                android:text="Birth Year" />
+
+            <NumberPicker
+                android:layout_width="46dp"
+                android:layout_height="39dp"
+                android:id="@+id/BirthYearPicker"
+                android:layout_gravity="right"
+                android:orientation="horizontal" />
 
         </LinearLayout>
 
-        <!-- Email -->
-
-        <LinearLayout
-            android:orientation="horizontal"
+        <EditText
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:ems="10"
+            android:id="@+id/EmailSignUp"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.45"
+            android:hint= "youremail@email.com"/>
 
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"
-                android:ems="10"
-                android:id="@+id/newEmail"
-                android:hint="myemail@email.com" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:hint="Username"
+            android:ems="10"
+            android:id="@+id/UserNameSignUp"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.45" />
 
-        </LinearLayout>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/editText"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.45"
+            android:hint="Password" />
 
-        <TextView android:id="@+id/signupLink"
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/ConfirmPasswordSignUp"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.45"
+            android:hint= "Confirm Password"/>
+
+        <Button
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
             android:text="Sign Up"
-            android:gravity="center"
-            android:textSize="16sp"/>
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp"
+            android:id="@+id/SignUpButton" />
+
 
     </LinearLayout>
 </ScrollView>
