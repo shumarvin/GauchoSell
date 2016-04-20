@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">GauchoSell</string>
+
+    <!-- Create account authentication dialog -->
+    <string name="loading_text">Loading...</string>
+
+    <!-- Not sure if we're going to use this
+    <string name="authentication_text">Authenticating…</string>
+    <string name="progress_dialog_creating_user_with_firebase">Attempting to create account…</string> -->
+
+    <string name="check_inbox_text">Please check your inbox for your password</string>
+    <string name="invalid_email_error">%s is not a valid E-mail.</string>
+    <string name="username_error_empty">Username field is empty.</string>
+
+
 </resources>
