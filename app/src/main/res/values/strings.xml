@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">GauchoSell</string>
+    <string name="home">Home</string>
+    <string name="string">+</string>
+    <string name="gauchosell">GauchoSell</string>
+    <string name="settings">settings</string>
+    <string name="homeButton">home</string>
+    <string name="myitemsButton">myItems</string>
+    <string name="bidsButton">Bids</string>
+    <string name="likeButton">like</string>
+    <string name="searchbutton">searchButton</string>
+    <string name="plusbutton">plusButton</string>
 </resources>
