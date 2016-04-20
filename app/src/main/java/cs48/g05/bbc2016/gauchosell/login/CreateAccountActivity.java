@@ -36,10 +36,10 @@ public class CreateAccountActivity extends BaseActivity {
     }
 
     public void hookInView() {
-        fNameItem = (EditText) findViewById(R.id.firstName);
-        lNameItem = (EditText) findViewById(R.id.lastName);
-        usernameItem = (EditText) findViewById(R.id.lastName);
-        birthMonthItem = (EditText) findViewById(R.id.birthMonth);
-        birthYearItem = (EditText) findViewById(R.id.birthYear);
+        fNameItem = (EditText) findViewById(R.id.FirstNameSignUp);
+        lNameItem = (EditText) findViewById(R.id.LastNameSignUp);
+        usernameItem = (EditText) findViewById(R.id.UserNameSignUp);
+        birthMonthItem = (EditText) findViewById(R.id.BirthMonthSignUp);
+        birthYearItem = (EditText) findViewById(R.id.BirthYearSignUp);
     }
 }
