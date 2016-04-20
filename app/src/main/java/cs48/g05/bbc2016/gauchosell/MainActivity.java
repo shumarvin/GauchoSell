@@ -19,8 +19,8 @@ import com.firebase.client.Firebase;
         /* Enable disk persistence  */
             Firebase.getDefaultConfig().setPersistenceEnabled(true);
 
-            setContentView(R.layout.activity_login);
+            //This is going to be its own view
+            //setContentView(R.layout.act);
         }
-
 
 }

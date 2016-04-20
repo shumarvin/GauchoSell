@@ -10,4 +10,7 @@ public class Constants {
      */
     public static final String FIREBASE_URL = BuildConfig.UNIQUE_FIREBASE_ROOT_URL;
 
+    //Constants for users in database
+    public static final String FIREBASE_LOCATION_USERS = "users";
+    public static final String FIREBASE_LOCATION_UID_MAPPINGS = "uidMappings";
 }
