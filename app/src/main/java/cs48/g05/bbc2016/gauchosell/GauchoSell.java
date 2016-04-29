@@ -4,8 +4,8 @@ import com.firebase.client.Firebase;
 
 /**
  * Created by dav on 4/20/16.
+ * APP STARTS HERE
  * This is what initializes Firebase before you run the app
- * Everything starts here
  */
 public class GauchoSell extends android.app.Application {
 

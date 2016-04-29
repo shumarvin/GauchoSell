@@ -14,10 +14,6 @@ import com.firebase.client.Firebase;
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-        /* Initialize Firebase */
-            Firebase.setAndroidContext(this);
-        /* Enable disk persistence  */
-            Firebase.getDefaultConfig().setPersistenceEnabled(true);
 
             //This is going to be its own view
             //setContentView(R.layout.act);
