@@ -38,4 +38,21 @@
     <string name="username_error_empty">Username field is empty.</string>
 
 
+    <!--category choices for postItem -->
+    <string-array name="categories">
+        <item>Accessories</item>
+        <item>Books</item>
+        <item>Clothing-Men\'s</item>
+        <item>Clothing-Women\'s</item>
+        <item>Cosmetics</item>
+        <item>Electronics</item>
+        <item>Event Tickets</item>
+        <item>Food</item>
+        <item>Furniture</item>
+        <item>Housing</item>
+        <item>Kitchen Appliances</item>
+        <item>Miscellaneous</item>
+    </string-array>
+
+
 </resources>
