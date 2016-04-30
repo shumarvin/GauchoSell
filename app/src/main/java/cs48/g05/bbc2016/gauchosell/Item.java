@@ -6,6 +6,7 @@ import java.util.UUID;
 /**
  * Created by icema_000 on 4/29/2016.
  */
+
 public class Item {
     private ItemInformation itemDescription;
     private String saleStatus;

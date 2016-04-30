@@ -76,7 +76,7 @@ public class User {
     }
 
     public boolean postItem(ItemInformation itemDescription, String saleStatus, UUID itemID, Bid[]bids){
-        return true;
+        return true; //TODO: Firebase reference
     }
     public boolean bitItem(Timestamp time, String username, UUID itemID, double amount){
         return true;
