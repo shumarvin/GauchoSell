@@ -1,6 +1,8 @@
 package cs48.g05.bbc2016.gauchosell.login;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,8 +15,9 @@ import android.widget.TextView;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
-import com.firebase.client.ServerValue;
+//import com.firebase.client.ServerValue; //was using for timestamp, may change
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -95,13 +98,14 @@ public class CreateAccountActivity extends BaseActivity {
         String firstName= fNameItem.getText().toString();
         String lastName= lNameItem.getText().toString();
         final String email= emailItem.getText().toString();
-        //TODO: hash password?
+        //TODO: hash password? Fix classes yo
         // http://stackoverflow.com/questions/2860943/how-can-i-hash-a-password-in-java
         final String password = passwordItem.getText().toString();
 
         /**
          * Checking email and username is valid
          */
+        //TODO: show error message
         if(!isValidEmail(email) || !isValidUsername(userName)) return;
 
         createUserDialog.show();
@@ -115,14 +119,22 @@ public class CreateAccountActivity extends BaseActivity {
                 addUserToDataBase((String) stringObjectMap.get("uid"));
                 Log.d(LOG_TAG, "Successfully created user account with uid: " + stringObjectMap.get("uid"));
                 createUserDialog.dismiss();
+                clearForm();
+                Intent intent = new Intent(CreateAccountActivity.this, LoginActivity.class);
+                startActivity(intent);
             }
 
             @Override
             public void onError(FirebaseError firebaseError) {
                 // log error and dismiss dialog if creation fails
-                Log.d(LOG_TAG, "An error occurred! " + firebaseError);
+                String errorMessage = "An error occurred! " + firebaseError.getMessage();
+                Log.d(LOG_TAG, errorMessage);
                 createUserDialog.dismiss();
-
+                AlertDialog.Builder alert = new AlertDialog.Builder(CreateAccountActivity.this);
+                alert.setTitle("Error");
+                alert.setMessage(errorMessage);
+                alert.setPositiveButton("OK",null);
+                alert.show();
             }
         });
 
@@ -134,16 +146,14 @@ public class CreateAccountActivity extends BaseActivity {
         //user : uid mapping
         HashMap<String, Object> userUidMapping = new HashMap<String, Object>();
 
-        //raw timestamp of when user joins
-        HashMap<String, Object> timeJoined = new HashMap<String, Object>();
-        timeJoined.put("timestamp", ServerValue.TIMESTAMP);
-
         //create hashmap representation of user
         User newUser = new User(Integer.parseInt(birthYearItem.getText().toString()),
                 Integer.parseInt(birthMonthItem.getText().toString()),
                 fNameItem.getText().toString(), lNameItem.getText().toString(),
                 usernameItem.getText().toString(), emailItem.getText().toString());
         HashMap<String, Object> newUserMap = (HashMap<String, Object>) new ObjectMapper().convertValue(newUser, Map.class);
+        //raw timestamp of when user joins
+        newUserMap.put("timeJoined",new Date().getTime());
 
         //Add user and UID to map to push to database
         userUidMapping.put("/"+Constants.FIREBASE_LOCATION_USERS + "/" + encodedEmail, newUserMap);
@@ -164,6 +174,7 @@ public class CreateAccountActivity extends BaseActivity {
             }
         });
     }
+    //TODO: send verification email to make sure email is valid
 
     private boolean isValidEmail(String email){
         boolean isValidEmail = (email != null &&
@@ -177,10 +188,21 @@ public class CreateAccountActivity extends BaseActivity {
     private boolean isValidUsername(String userName){
         if (userName.equals("")){
             usernameItem.setError(getResources().getString(R.string.username_error_empty));
+            //TODO: no spaces
             return false;
         }
         return true;
 
+    }
+
+    private void clearForm() {
+        fNameItem.setText("");
+        lNameItem.setText("");
+        usernameItem.setText("");
+        emailItem.setText("");
+        passwordItem.setText("");
+        birthMonthItem.setText("");
+        birthYearItem.setText("");
     }
 
 }
