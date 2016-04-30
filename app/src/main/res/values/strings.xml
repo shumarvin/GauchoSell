@@ -19,6 +19,20 @@
     <string name="authentication_text">Authenticating…</string>
     <string name="progress_dialog_creating_user_with_firebase">Attempting to create account…</string> -->
 
+    <!-- Sign up text -->
+    <string name="first_name_placeholder">First Name</string>
+    <string name="last_name_placeholder">Last Name</string>
+    <string name="month_placeholder">Month</string>
+    <string name="year_placeholder">Year</string>
+    <string name="email_placeholder">youremail@email.com</string>
+    <string name="username_placeholder">Username</string>
+    <string name="password_placeholder">Password</string>
+    <string name="confirm_pw_placeholder">Confirm Password</string>
+    <string name="create_account_button">Create Account</string>
+    <string name="or_signup">or</string>
+    <string name="facebook_signup_button">Sign Up with Facebook</string>
+
+
     <string name="check_inbox_text">Please check your inbox for your password</string>
     <string name="invalid_email_error">%s is not a valid E-mail.</string>
     <string name="username_error_empty">Username field is empty.</string>

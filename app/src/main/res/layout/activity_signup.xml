@@ -50,7 +50,7 @@
                 android:inputType="textPersonName"
                 android:ems="10"
                 android:id="@+id/FirstNameSignUp"
-                android:hint="First Name" />
+                android:hint="@string/first_name_placeholder" />
 
         </LinearLayout>
 
@@ -68,7 +68,7 @@
                 android:inputType="textPersonName"
                 android:ems="10"
                 android:id="@+id/LastNameSignUp"
-                android:hint="Last Name" />
+                android:hint="@string/last_name_placeholder" />
 
         </LinearLayout>
 
@@ -76,34 +76,29 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:weightSum="1">
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/BirthMonthSignUp"
-                android:text="Birth Month" />
+                android:inputType="date"
+                android:hint="@string/month_placeholder"
+                android:gravity="end"
+                android:id="@+id/BirthMonthSignUp" />
 
-            <NumberPicker
-                android:layout_width="46dp"
-                android:layout_height="39dp"
-                android:id="@+id/BirthMonthPicker"
-                android:layout_gravity="right"
-                android:orientation="horizontal" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="/"
+                android:id="@+id/textView" />
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/BirthYearSignUp"
-                android:text="Birth Year" />
-
-            <NumberPicker
-                android:layout_width="46dp"
-                android:layout_height="39dp"
-                android:id="@+id/BirthYearPicker"
-                android:layout_gravity="right"
-                android:orientation="horizontal" />
-
+                android:inputType="date"
+                android:hint="@string/year_placeholder"
+                android:id="@+id/BirthYearSignUp" />
         </LinearLayout>
 
         <EditText
@@ -114,13 +109,13 @@
             android:id="@+id/EmailSignUp"
             android:layout_gravity="center_horizontal"
             android:layout_weight="0.45"
-            android:hint= "youremail@email.com"/>
+            android:hint= "@string/email_placeholder"/>
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
-            android:hint="Username"
+            android:hint="@string/username_placeholder"
             android:ems="10"
             android:id="@+id/UserNameSignUp"
             android:layout_gravity="center_horizontal"
@@ -134,7 +129,7 @@
             android:id="@+id/PasswordSignUp"
             android:layout_gravity="center_horizontal"
             android:layout_weight="0.45"
-            android:hint="Password" />
+            android:hint="@string/password_placeholder" />
 
         <EditText
             android:layout_width="match_parent"
@@ -144,12 +139,12 @@
             android:id="@+id/ConfirmPasswordSignUp"
             android:layout_gravity="center_horizontal"
             android:layout_weight="0.45"
-            android:hint= "Confirm Password"/>
+            android:hint= "@string/confirm_pw_placeholder"/>
 
         <Button
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Create Account"
+            android:text="@string/create_account_button"
             android:layout_marginTop="24dp"
             android:layout_marginBottom="24dp"
             android:id="@+id/SignUpButton" />
@@ -158,7 +153,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="or"
+            android:text="@string/or_signup"
             android:id="@+id/orText"
             android:layout_gravity="center_horizontal"
             android:layout_weight="0.45" />
@@ -166,7 +161,7 @@
         <Button
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Sign Up with Facebook"
+            android:text="@string/facebook_signup_button"
             android:layout_marginTop="24dp"
             android:layout_marginBottom="24dp"
             android:id="@+id/SignUpWithFacebookButton"
