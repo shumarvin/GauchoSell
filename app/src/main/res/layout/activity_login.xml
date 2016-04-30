@@ -2,7 +2,8 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    android:background="@drawable/gauchosellbackground">
 
     <LinearLayout
         android:orientation="vertical"
@@ -13,14 +14,29 @@
         android:paddingRight="24dp"
         android:weightSum="1">
 
-        <ImageView android:src="@drawable/abc_btn_check_to_on_mtrl_015"
-            android:layout_width="316dp"
-            android:layout_height="72dp"
-            android:layout_marginBottom="24dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="0.45" />
-
         <!-- Email Label -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/g_logo"
+            android:id="@+id/g_logo"
+            android:layout_gravity="center_horizontal"
+            android:textColor="#000000"
+            android:textSize="35sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/app_name"
+            android:id="@+id/login_logo"
+            android:layout_gravity="center_horizontal"
+            android:textColor="#000000"
+            android:textAllCaps="true"/>
+
+
 
         <LinearLayout
             android:orientation="horizontal"
@@ -77,6 +93,7 @@
                 android:layout_gravity="center"
                 android:textSize="16sp" />
         </LinearLayout>
+
 
     </LinearLayout>
 </ScrollView>

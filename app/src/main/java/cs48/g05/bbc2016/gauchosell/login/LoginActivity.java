@@ -1,6 +1,7 @@
 package cs48.g05.bbc2016.gauchosell.login;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -30,6 +31,16 @@ public class LoginActivity extends BaseActivity {
                 onSignUpPressed(view);
             }
         });
+
+        //set logo font
+        Typeface logoFont = Typeface.createFromAsset(getAssets(), "FUTRFW.TTF");
+        TextView logoTextView = (TextView)findViewById(R.id.login_logo);
+        logoTextView.setTypeface(logoFont);
+
+        //set G logo
+        Typeface logoGFont = Typeface.createFromAsset(getAssets(), "The Heart Maze Demo.ttf");
+        TextView logoGTextView = (TextView)findViewById(R.id.g_logo);
+        logoGTextView.setTypeface(logoGFont);
     }
 
     /**
