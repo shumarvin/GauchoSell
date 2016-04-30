@@ -72,7 +72,7 @@ public class LoginActivity extends BaseActivity {
 
     private void authUser() {
         //firebaseRef.authWithPassword(emailInput.toString(), passwordInput.toString(), new Firebase.AuthResultHandler() {
-        firebaseRef.authWithPassword("ld@gmail.com","ld", new Firebase.AuthResultHandler() {
+        firebaseRef.authWithPassword(emailInput.getText().toString(),passwordInput.getText().toString(), new Firebase.AuthResultHandler() {
             @Override
             public void onAuthenticated(AuthData authData) {
                 Log.d(LOG_TAG, getString(R.string.successful_authentication) + authData.getUid());
