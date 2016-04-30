@@ -3,6 +3,9 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
 
+    <!--TODO: Refractor into common views SEE: http://stackoverflow.com/questions/5638176/how-can-i-allow-multiple-activities-to-share-the-same-inflated-included-view
+    TODO: set shadow for cursive G-->
+
     <ImageView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
@@ -63,8 +66,8 @@
                     android:layout_height="wrap_content"
                     android:inputType="textEmailAddress"
                     android:ems="10"
-                    android:id="@+id/usernameInput"
-                    android:hint="Username" />
+                    android:id="@+id/emailInput"
+                    android:hint="Email" />
 
             </LinearLayout>
 

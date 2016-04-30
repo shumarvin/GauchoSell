@@ -37,6 +37,9 @@
     <string name="invalid_email_error">%s is not a valid E-mail.</string>
     <string name="username_error_empty">Username field is empty.</string>
 
+    <string name="successful_authentication">Successfully logged in. </string>
+    <string name="email_password_invalid">Authentication failed. </string>
+
 
     <!--category choices for postItem -->
     <string-array name="categories">

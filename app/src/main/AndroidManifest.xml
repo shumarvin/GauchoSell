@@ -27,6 +27,15 @@
                 android:value=".login.LoginActivity" />
         </activity>
         <activity android:name=".PostItemActivity"></activity>
+
+        <activity android:name=".GeneralFeedActivity">
+            android:name="GeneralFeedActivity"
+            android:label="Login"
+            android:parentActivityName=".login.LoginActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".login.LoginActivity" />
+        </activity>
     </application>
 
 </manifest>
