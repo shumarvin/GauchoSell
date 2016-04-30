@@ -13,11 +13,19 @@
          http://stackoverflow.com/questions/33742114/the-following-classes-could-not-be-found-android-support-v7-internal-app-window
 
     -->
-    <style name="AppTheme" parent="Base.Theme.AppCompat.Light.DarkActionBar">
+    <style name="Theme.AppCompat.Light.NoActionBar.FullScreen" parent="Theme.AppCompat.Light">
+        <!--see: http://stackoverflow.com/questions/20653305/full-screen-theme-for-appcompat-->
+        <!--gets rid of action bar and makes app full screen-->
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorControlActivated">@color/whiteText</item>
+
     </style>
 
 </resources>

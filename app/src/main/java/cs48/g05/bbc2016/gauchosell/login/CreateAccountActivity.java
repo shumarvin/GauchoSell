@@ -98,14 +98,12 @@ public class CreateAccountActivity extends BaseActivity {
         String firstName= fNameItem.getText().toString();
         String lastName= lNameItem.getText().toString();
         final String email= emailItem.getText().toString();
-        //TODO: hash password? Fix classes yo
-        // http://stackoverflow.com/questions/2860943/how-can-i-hash-a-password-in-java
-        final String password = passwordItem.getText().toString();
+        final String password = passwordItem.getText().toString(); //be careful using strings with passwords
+        //note: firebase hashes passwords for you
 
         /**
          * Checking email and username is valid
          */
-        //TODO: show error message
         if(!isValidEmail(email) || !isValidUsername(userName)) return;
 
         createUserDialog.show();
