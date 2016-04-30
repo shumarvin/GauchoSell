@@ -1,6 +1,7 @@
 package cs48.g05.bbc2016.gauchosell;
 
 import java.sql.Timestamp;
+import java.text.NumberFormat;
 import java.util.UUID;
 
 /**
@@ -35,6 +36,12 @@ public class Bid {
     public UUID getItemId() { return itemId; }
 
     public void setItemId(UUID itemId) { this.itemId = itemId; }
+
+    //toString puts the Bid into money form: $9.53
+    public String amountToString(){
+        NumberFormat formatter = NumberFormat.getCurrencyInstance();
+        return formatter.format(amount);
+    }
 
 
 

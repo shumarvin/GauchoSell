@@ -1,5 +1,9 @@
 package cs48.g05.bbc2016.gauchosell;
 
+import java.sql.Timestamp;
+import java.text.NumberFormat;
+import java.util.UUID;
+
 /**
  * Created by icema_000 on 4/29/2016.
  */
@@ -10,14 +14,16 @@ public class ItemInformation {
     private EmbeddedImage image;
     private String description;
     private Bid highestBid;
+    private Bid winningBid;
 
-    public ItemInformation(double price, String title, String category, EmbeddedImage image, String description, Bid highestBid) {
+    public ItemInformation(double price, String title, String category, EmbeddedImage image, String description) {
         this.price = price;
         this.title = title;
         this.category = category;
         this.image = image;
         this.description = description;
-        this.highestBid = highestBid;
+        this.highestBid = null;
+        this.winningBid = null;
     }
 
     public double getPrice() {
@@ -40,23 +46,30 @@ public class ItemInformation {
         return category;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
+    public void setCategory(String category) { this.category = category; }
+
+    public String getDescription() { return description; }
+
+    public void setDescription(String description) { this.description = description; }
+
+    public Bid getHighestBid() { return highestBid; }
+
+    public void setHighestBid(Bid highestBid_) {
+        double tempamount=highestBid_.getAmount();
+        Timestamp tempdate=highestBid.getDate();
+        UUID tempId=highestBid_.getItemId();
+        String tempusername=highestBid_.getUsername();
+        Bid tempBid=new Bid(tempdate,tempusername,tempamount,tempId);
+        this.highestBid=tempBid;
     }
 
-    public String getDescription() {
-        return description;
-    }
+    public Bid getWinningBid() { return winningBid; }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+    public void setWinningBid(Bid winningBid) { this.winningBid = winningBid; }
 
-    public Bid getHighestBid() {
-        return highestBid;
-    }
-
-    public void setHighestBid(Bid highestBid) {
-        this.highestBid = highestBid;
+    //toString puts the Bid into money form: $9.53
+    public String priceToString() {
+        NumberFormat formatter = NumberFormat.getCurrencyInstance();
+        return formatter.format(price);
     }
 }
