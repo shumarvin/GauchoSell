@@ -51,7 +51,7 @@ public class CreateAccountActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
         firebaseRef = new Firebase(Constants.FIREBASE_URL);
-        hookInView(); //TODO: Change name?
+        hookInView();
 
         Button signUpButton = (Button) findViewById(R.id.SignUpButton);
         signUpButton.setOnClickListener(new OnClickListener() {
@@ -184,9 +184,11 @@ public class CreateAccountActivity extends BaseActivity {
     }
 
     private boolean isValidUsername(String userName){
-        if (userName.equals("")){
+        if (userName.equals("")) {
             usernameItem.setError(getResources().getString(R.string.username_error_empty));
-            //TODO: no spaces
+            return false;
+        } else if(userName.contains(" ")) {
+            usernameItem.setError("No spaces allowed in username.");
             return false;
         }
         return true;

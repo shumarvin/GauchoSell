@@ -70,6 +70,7 @@ public class LoginActivity extends BaseActivity {
         startActivity(intent);
     }
 
+
     private void authUser() {
         //firebaseRef.authWithPassword(emailInput.toString(), passwordInput.toString(), new Firebase.AuthResultHandler() {
         firebaseRef.authWithPassword(emailInput.getText().toString(),passwordInput.getText().toString(), new Firebase.AuthResultHandler() {
