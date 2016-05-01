@@ -107,7 +107,13 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Upload Image"
+        android:id="@+id/uploadImage" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="Post Item"
-        android:id="@+id/button" />
+        android:id="@+id/postItem" />
 
 </LinearLayout>
