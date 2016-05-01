@@ -13,7 +13,7 @@ public class Bid {
     private String username;
     private double amount;
     private UUID itemId;
-    //Don't know how to deal with Timestamps
+  
     public Bid(Timestamp date, String username, double amount, UUID itemId){
         this.date=date;
         this.username=username;
