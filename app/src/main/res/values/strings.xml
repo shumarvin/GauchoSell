@@ -32,6 +32,13 @@
     <string name="or_signup">or</string>
     <string name="facebook_signup_button">Sign Up with Facebook</string>
 
+    <!-- Post Item text -->
+    <string name="post_item_logo">-Post a New Item-</string>
+    <string name="post_item_name">Item Name</string>
+    <string name="post_item_description">Item Description</string>
+    <string name="category">Category</string>
+    <string name="price">Price</string>
+
 
     <string name="check_inbox_text">Please check your inbox for your password</string>
     <string name="invalid_email_error">%s is not a valid E-mail.</string>
