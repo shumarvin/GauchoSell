@@ -13,4 +13,5 @@ public class Constants {
     //Constants for users in database
     public static final String FIREBASE_LOCATION_USERS = "users";
     public static final String FIREBASE_LOCATION_UID_MAPPINGS = "uidMappings";
+    public static final String FIREBASE_LOCATION_ITEMS = "items";
 }
