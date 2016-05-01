@@ -1,5 +1,7 @@
 package cs48.g05.bbc2016.gauchosell;
 
+import android.content.ClipData;
+
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -13,6 +15,7 @@ public class Item {
     private UUID itemID;
     private ArrayList<Bid> bids;
 
+    public Item(){}
     public Item(ItemInformation itemDescription, String saleStatus) {
         this.itemDescription = itemDescription;
         this.saleStatus = saleStatus;
