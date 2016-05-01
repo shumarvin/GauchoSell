@@ -22,9 +22,13 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="@string/g_logo"
+            android:shadowColor="@color/greyButtonText"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="4"
             android:id="@+id/g_logo"
             android:layout_gravity="center_horizontal"
-            android:textColor="#000000"
+            android:textColor="@color/whiteText"
             android:textSize="35sp"/>
 
         <TextView
@@ -34,7 +38,7 @@
             android:text="@string/app_name"
             android:id="@+id/login_logo"
             android:layout_gravity="center_horizontal"
-            android:textColor="#000000"
+            android:textColor="@color/whiteText"
             android:textAllCaps="true"/>
 
         <!-- First Name -->
@@ -142,8 +146,12 @@
             android:hint= "@string/confirm_pw_placeholder"/>
 
         <Button
-            android:layout_width="fill_parent"
+            android:layout_weight=".50"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:alpha=".50"
+            android:textColor="@color/greyButtonText"
             android:text="@string/create_account_button"
             android:layout_marginTop="24dp"
             android:layout_marginBottom="24dp"
@@ -159,13 +167,16 @@
             android:layout_weight="0.45" />
 
         <Button
-            android:layout_width="fill_parent"
+            android:layout_weight=".75"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:alpha=".50"
+            android:textColor="@color/greyButtonText"
             android:text="@string/facebook_signup_button"
             android:layout_marginTop="24dp"
             android:layout_marginBottom="24dp"
-            android:id="@+id/SignUpWithFacebookButton"
-            android:layout_weight="0.68" />
+            android:id="@+id/SignUpWithFacebookButton" />
 
 
     </LinearLayout>
