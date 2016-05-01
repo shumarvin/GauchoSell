@@ -28,7 +28,7 @@
         </activity>
         <activity android:name=".PostItemActivity"></activity>
 
-        <activity android:name=".GeneralFeedActivity">
+        <activity android:name=".HomeActivity">
             android:name="GeneralFeedActivity"
             android:label="Login"
             android:parentActivityName=".login.LoginActivity">

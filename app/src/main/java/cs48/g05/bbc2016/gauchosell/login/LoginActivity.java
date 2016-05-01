@@ -17,7 +17,7 @@ import com.firebase.client.FirebaseError;
 
 import cs48.g05.bbc2016.gauchosell.BaseActivity;
 import cs48.g05.bbc2016.gauchosell.Constants;
-import cs48.g05.bbc2016.gauchosell.GeneralFeedActivity;
+import cs48.g05.bbc2016.gauchosell.HomeActivity;
 import cs48.g05.bbc2016.gauchosell.R;
 
 /**
@@ -79,7 +79,7 @@ public class LoginActivity extends BaseActivity {
                 Log.d(LOG_TAG, getString(R.string.successful_authentication) + authData.getUid());
                 authUserDialog.dismiss();
                 clearForm();
-                Intent intent = new Intent(LoginActivity.this, GeneralFeedActivity.class);
+                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                 startActivity(intent);
             }
 
