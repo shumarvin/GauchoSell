@@ -49,10 +49,12 @@ public class UploadImageDialogFragment extends DialogFragment {
             public void onClick(DialogInterface dialog, int id){
                 //user clicked take photo
                 mListener.onDialogPositiveClick(UploadImageDialogFragment.this);
+                /**
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 fileUri = getOutputMediaFileURI(MEDIA_TYPE_IMAGE);
                 intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
                 startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+                 **/
             }
         });
 
@@ -73,6 +75,7 @@ public class UploadImageDialogFragment extends DialogFragment {
             throw new ClassCastException(activity.toString() + " must implement UploadImageListener");
         }
     }
+    /**
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data){
         if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
@@ -118,6 +121,7 @@ public class UploadImageDialogFragment extends DialogFragment {
                     "IMG_"+ timeStamp + ".jpg");
         return mediaFile;
     }
+    **/
     public Bitmap getBitmap(){
         return bitmap;
     }

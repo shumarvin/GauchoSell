@@ -4,8 +4,14 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DialogFragment;
 import android.app.Fragment;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -13,19 +19,30 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.firebase.client.Firebase;
+
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import cs48.g05.bbc2016.gauchosell.util.Constants;
 
 public class PostItemActivity extends FragmentActivity implements
                                                 UploadImageDialogFragment.UploadImageListener {
+    private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
+    public static final int MEDIA_TYPE_IMAGE = 1;
+
     private Firebase firebaseRef;
     private EditText itemNameText;
     private EditText itemDescriptionText;
     private String category;
     private EditText priceText;
     private UploadImageDialogFragment upImageDialog;
+    private Uri fileUri;
+    private ImageView itemImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,7 +103,55 @@ public class PostItemActivity extends FragmentActivity implements
     }
     @Override
     public void onDialogPositiveClick(DialogFragment dialog){
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        fileUri = getOutputMediaFileURI(MEDIA_TYPE_IMAGE);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
+        startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+    }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data){
+        if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
+            if (resultCode == Activity.RESULT_OK) {
+                // Image captured and saved to fileUri specified in the Intent
+                Toast.makeText(this, "Image saved to:\n" +
+                        data.getData(), Toast.LENGTH_LONG).show();
+                try{
+                    fileUri = data.getData();
+                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), fileUri);
+                    itemImage = (ImageView) findViewById(R.id.itemPhoto);
+                    itemImage.setImageBitmap(bitmap);
+                } catch(IOException e){
 
+                }}
+            else if (resultCode == Activity.RESULT_CANCELED) {
+                // User cancelled the image capture
+            } else {
+                // Image capture failed, advise user
+            }
+        }
+    }
+    //Create file Uri for saving image
+    private static Uri getOutputMediaFileURI(int type){
+        return Uri.fromFile(getOutputMediaFile(type));
+    }
+    //create File to save image
+    private static File getOutputMediaFile(int type) {
+        File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_PICTURES), "MyCameraApp");
+
+        //create media storage directory if it doesn't exist
+        if (!mediaStorageDir.exists()) {
+            if (!mediaStorageDir.mkdirs()) {
+                Log.d("MyCameraApp", "failed to create directory");
+                return null;
+            }
+        }
+
+        //create media file name
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        File mediaFile= new File(mediaStorageDir.getPath() + File.separator +
+                "IMG_"+ timeStamp + ".jpg");
+        return mediaFile;
     }
     @Override
     public void onDialogNegativeClick(DialogFragment dialog) {
