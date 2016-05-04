@@ -47,8 +47,15 @@ public class PostItemActivity extends Activity {
 
             }
         });
-
-        //intialize the postItem button
+        //initialize upload picture button
+        Button uploadImage = (Button) findViewById(R.id.uploadImage);
+        uploadImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onUploadImageClick(v);
+            }
+        });
+        //initialize the postItem button
         Button postItem = (Button) findViewById(R.id.postItem);
         postItem.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,6 +63,10 @@ public class PostItemActivity extends Activity {
                 onPostItemClick(v);
             }
         });
+    }
+
+    public void onUploadImageClick(View v) {
+
     }
     public void onPostItemClick(View v) {
         String itemName = itemNameText.getText().toString();
