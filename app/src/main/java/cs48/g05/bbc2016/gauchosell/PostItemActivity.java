@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 
 import com.firebase.client.Firebase;
@@ -24,7 +25,7 @@ public class PostItemActivity extends FragmentActivity implements
     private EditText itemDescriptionText;
     private String category;
     private EditText priceText;
-    private AlertDialog.Builder builder;
+    private UploadImageDialogFragment upImageDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

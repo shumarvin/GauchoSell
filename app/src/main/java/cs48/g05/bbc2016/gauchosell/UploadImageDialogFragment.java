@@ -6,14 +6,17 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URI;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -28,6 +31,9 @@ public class UploadImageDialogFragment extends DialogFragment {
 
     public UploadImageListener mListener;
     private Uri fileUri;
+    private Bitmap bitmap;
+    private ImageView itemImage;
+
 
     //interface for activity to receive event callbacks
     public interface UploadImageListener{
@@ -42,11 +48,11 @@ public class UploadImageDialogFragment extends DialogFragment {
         builder.setPositiveButton(R.string.takePhoto, new DialogInterface.OnClickListener(){
             public void onClick(DialogInterface dialog, int id){
                 //user clicked take photo
+                mListener.onDialogPositiveClick(UploadImageDialogFragment.this);
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 fileUri = getOutputMediaFileURI(MEDIA_TYPE_IMAGE);
                 intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
                 startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
-                mListener.onDialogPositiveClick(UploadImageDialogFragment.this);
             }
         });
 
@@ -74,7 +80,14 @@ public class UploadImageDialogFragment extends DialogFragment {
                 // Image captured and saved to fileUri specified in the Intent
                 Toast.makeText(getActivity(), "Image saved to:\n" +
                         data.getData(), Toast.LENGTH_LONG).show();
-            } else if (resultCode == Activity.RESULT_CANCELED) {
+                try{
+                bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), fileUri);
+                itemImage = (ImageView) getActivity().findViewById(R.id.itemPhoto);
+                    itemImage.setImageBitmap(bitmap);
+            } catch(IOException e){
+
+                }}
+            else if (resultCode == Activity.RESULT_CANCELED) {
                 // User cancelled the image capture
             } else {
                 // Image capture failed, advise user
@@ -104,5 +117,7 @@ public class UploadImageDialogFragment extends DialogFragment {
                     "IMG_"+ timeStamp + ".jpg");
         return mediaFile;
     }
-
+    public Bitmap getBitmap(){
+        return bitmap;
+    }
 }
