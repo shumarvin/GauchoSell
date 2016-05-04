@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
@@ -7,17 +7,44 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:backgroundTint="@android:color/transparent">
-    <!--tools:context="cs48.g05.bbc2016.gauchosell.home"-->
+    tools:context="cs48.g05.bbc2016.gauchosell.HomeActivity"
+    android:backgroundTint="@android:color/transparent"
+    android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/gauchosell"
-        android:id="@+id/Logo"
-        android:textSize="30sp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#000033ff"
+        android:gravity="right">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/g_logo"
+            android:shadowColor="@color/greyButtonText"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="4"
+            android:id="@+id/g_logo"
+            android:layout_gravity="center_horizontal"
+            android:textColor="#000000"
+            android:textSize="35sp"
+            android:paddingLeft="0dp"
+            android:paddingRight="280dp" />
+
+        <ImageButton
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/imageButton"
+            android:src="@drawable/add"
+            android:background="#00ffffff"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true" />
+
+
+    </LinearLayout>
 
     <ListView
         android:layout_width="match_parent"
@@ -36,64 +63,59 @@
         android:background="#ffffff">
 
         <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="60dp"
+            android:layout_height="70dp"
             android:scaleType="fitCenter"
             android:adjustViewBounds="true"
-            android:id="@+id/imageButton"
-            android:src="@drawable/home_button"
+            android:id="@+id/home_button"
+            android:src="@drawable/home_button2"
             android:background="@android:color/transparent"
-            android:paddingEnd="27dp"
-            android:paddingRight="27dp"
-            android:contentDescription="@string/homeButton" />
+            android:contentDescription="@string/homeButton"
+            android:padding="5dp" />
 
         <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             android:scaleType="fitCenter"
             android:adjustViewBounds="true"
-            android:id="@+id/imageButton2"
-            android:src="@drawable/settings_button"
+            android:id="@+id/settings_button"
+            android:src="@drawable/settings_button2"
             android:background="@android:color/transparent"
-            android:paddingEnd="27dp"
-            android:paddingRight="27dp"
+            android:padding="5dp"
             android:contentDescription="@string/settings" />
 
         <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="60dp"
+            android:layout_height="70dp"
             android:scaleType="fitCenter"
             android:adjustViewBounds="true"
-            android:id="@+id/imageButton3"
-            android:src="@drawable/myitems_button"
+            android:id="@+id/myitems_folder"
+            android:src="@drawable/folder"
             android:background="@android:color/transparent"
-            android:paddingEnd="27dp"
-            android:paddingRight="27dp"
+            android:padding="5dp"
             android:contentDescription="@string/myitemsButton" />
 
         <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
             android:scaleType="fitCenter"
             android:adjustViewBounds="true"
-            android:id="@+id/imageButton5"
-            android:src="@drawable/bids_button"
+            android:id="@+id/mybids_button"
+            android:src="@drawable/mybids_button"
             android:background="@android:color/transparent"
-            android:paddingEnd="27dp"
-            android:paddingRight="27dp"
+            android:padding="5dp"
             android:contentDescription="@string/bidsButton"
             android:baselineAlignBottom="true" />
 
         <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:scaleType="fitCenter"
             android:adjustViewBounds="true"
-            android:id="@+id/imageButton6"
-            android:src="@drawable/like_button"
+            android:id="@+id/like_button"
+            android:src="@drawable/like_button2"
             android:background="@android:color/transparent"
-            android:paddingEnd="0dp"
-            android:paddingRight="0dp"
+            android:padding="5dp"
             android:contentDescription="@string/likeButton" />
 
     </LinearLayout>
@@ -106,29 +128,5 @@
         android:layout_alignParentStart="true"
         android:layout_above="@+id/listView">
 
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:scaleType="fitCenter"
-            android:adjustViewBounds="true"
-            android:id="@+id/imageButton4"
-            android:src="@drawable/search_button"
-            android:focusable="true"
-            android:background="@android:color/transparent"
-            android:paddingRight="250dp"
-            android:paddingLeft="20dp"
-            android:contentDescription="@string/searchbutton" />
-
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:scaleType="fitCenter"
-            android:adjustViewBounds="true"
-            android:id="@+id/imageButton7"
-            android:src="@drawable/plus_button"
-            android:background="@android:color/transparent"
-            android:contentDescription="@string/plusbutton" />
-
     </LinearLayout>
-
-</RelativeLayout>
+</LinearLayout>
