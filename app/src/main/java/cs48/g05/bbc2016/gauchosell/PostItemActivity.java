@@ -1,6 +1,7 @@
 package cs48.g05.bbc2016.gauchosell;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -17,6 +18,7 @@ public class PostItemActivity extends Activity {
     private EditText itemDescriptionText;
     private String category;
     private EditText priceText;
+    private AlertDialog.Builder builder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,9 +26,9 @@ public class PostItemActivity extends Activity {
         setContentView(R.layout.activity_post_item);
         firebaseRef = new Firebase(Constants.FIREBASE_URL);
 
-        itemNameText = (EditText) findViewById(R.id.itemName);
-        itemDescriptionText = (EditText) findViewById(R.id.itemDescription);
-        priceText = (EditText) findViewById(R.id.itemPrice);
+        itemNameText = (EditText) findViewById(R.id.item_name_field);
+        itemDescriptionText = (EditText) findViewById(R.id.item_description_field);
+        priceText = (EditText) findViewById(R.id.item_price_field);
 
         //Initialize drop-down category menu
         Spinner spinner = (Spinner) findViewById(R.id.spinner);
@@ -46,7 +48,8 @@ public class PostItemActivity extends Activity {
             }
         });
 
-        Button postItem = (Button) findViewById(R.id.button);
+        //intialize the postItem button
+        Button postItem = (Button) findViewById(R.id.postItem);
         postItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
