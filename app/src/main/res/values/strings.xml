@@ -64,5 +64,10 @@
         <item>Miscellaneous</item>
     </string-array>
 
+    //names for uploadImage Dialog Box
+    <string name="UploadImageDialogTitle">Would you like to take a picture or upload
+                                            an existing photo?</string>
+    <string name="takePhoto">Take Photo</string>
+    <string name="uploadImage">Upload Image</string>
 
 </resources>

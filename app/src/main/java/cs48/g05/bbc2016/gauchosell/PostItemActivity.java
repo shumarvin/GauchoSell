@@ -2,6 +2,7 @@ package cs48.g05.bbc2016.gauchosell;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.DialogFragment;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -14,7 +15,7 @@ import com.firebase.client.Firebase;
 
 import cs48.g05.bbc2016.gauchosell.util.Constants;
 
-public class PostItemActivity extends Activity {
+public class PostItemActivity extends Activity implements UploadImageDialogFragment.UploadImageListener {
     private Firebase firebaseRef;
     private EditText itemNameText;
     private EditText itemDescriptionText;
@@ -74,6 +75,13 @@ public class PostItemActivity extends Activity {
         String itemName = itemNameText.getText().toString();
         String itemDescription = itemDescriptionText.getText().toString();
         String price = priceText.getText().toString();
+    }
+    @Override
+    public void onDialogPositiveClick(DialogFragment dialog){
+
+    }
+    @Override
+    public void onDialogNegativeClick(DialogFragment dialog) {
     }
 }
 
