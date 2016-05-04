@@ -81,6 +81,7 @@ public class UploadImageDialogFragment extends DialogFragment {
                 Toast.makeText(getActivity(), "Image saved to:\n" +
                         data.getData(), Toast.LENGTH_LONG).show();
                 try{
+                    fileUri = data.getData();
                 bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), fileUri);
                 itemImage = (ImageView) getActivity().findViewById(R.id.itemPhoto);
                     itemImage.setImageBitmap(bitmap);
