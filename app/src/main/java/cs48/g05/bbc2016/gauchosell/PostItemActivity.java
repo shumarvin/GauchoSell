@@ -52,6 +52,7 @@ public class PostItemActivity extends FragmentActivity implements
         itemNameText = (EditText) findViewById(R.id.item_name_field);
         itemDescriptionText = (EditText) findViewById(R.id.item_description_field);
         priceText = (EditText) findViewById(R.id.item_price_field);
+        itemImage = (ImageView) findViewById(R.id.itemPhoto);
 
         //Initialize drop-down category menu
         Spinner spinner = (Spinner) findViewById(R.id.spinner);
