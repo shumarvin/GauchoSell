@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.io.File;
 import java.net.URI;
@@ -23,8 +24,10 @@ import java.util.Date;
 public class UploadImageDialogFragment extends DialogFragment {
 
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
+    public static final int MEDIA_TYPE_IMAGE = 1;
+
     public UploadImageListener mListener;
-    private URI fileURI;
+    private Uri fileUri;
 
     //interface for activity to receive event callbacks
     public interface UploadImageListener{
@@ -40,10 +43,11 @@ public class UploadImageDialogFragment extends DialogFragment {
             public void onClick(DialogInterface dialog, int id){
                 //user clicked take photo
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                fileUri = getOutputMediaFileURI(MEDIA_TYPE_IMAGE);
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
                 startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
                 mListener.onDialogPositiveClick(UploadImageDialogFragment.this);
             }
-
         });
 
         builder.setNegativeButton(R.string.uploadImage, new DialogInterface.OnClickListener(){
@@ -65,9 +69,17 @@ public class UploadImageDialogFragment extends DialogFragment {
     }
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data){
-    if(requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE){
-        //if(resultCode == RESULT_OK)
-    }
+        if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
+            if (resultCode == Activity.RESULT_OK) {
+                // Image captured and saved to fileUri specified in the Intent
+                Toast.makeText(getActivity(), "Image saved to:\n" +
+                        data.getData(), Toast.LENGTH_LONG).show();
+            } else if (resultCode == Activity.RESULT_CANCELED) {
+                // User cancelled the image capture
+            } else {
+                // Image capture failed, advise user
+            }
+        }
     }
     //Create file Uri for saving image
     private static Uri getOutputMediaFileURI(int type){
