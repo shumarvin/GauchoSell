@@ -53,6 +53,7 @@ public class PostItemActivity extends FragmentActivity implements
         itemNameText = (EditText) findViewById(R.id.item_name_field);
         itemDescriptionText = (EditText) findViewById(R.id.item_description_field);
         priceText = (EditText) findViewById(R.id.item_price_field);
+        itemImage = (ImageView) findViewById(R.id.itemPhoto);
 
         //Initialize drop-down category menu
         Spinner spinner = (Spinner) findViewById(R.id.spinner);
@@ -104,8 +105,8 @@ public class PostItemActivity extends FragmentActivity implements
     @Override
     public void onDialogPositiveClick(DialogFragment dialog){
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        fileUri = getOutputMediaFileURI(MEDIA_TYPE_IMAGE);
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
+        //fileUri = getOutputMediaFileURI(MEDIA_TYPE_IMAGE);
+        //intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
         startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
     }
     @Override
