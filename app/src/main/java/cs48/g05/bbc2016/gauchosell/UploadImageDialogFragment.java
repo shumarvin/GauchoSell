@@ -26,13 +26,8 @@ import java.util.Date;
  */
 public class UploadImageDialogFragment extends DialogFragment {
 
-    private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
-    public static final int MEDIA_TYPE_IMAGE = 1;
-
     public UploadImageListener mListener;
-    private Uri fileUri;
-    private Bitmap bitmap;
-    private ImageView itemImage;
+
 
 
     //interface for activity to receive event callbacks
@@ -49,12 +44,6 @@ public class UploadImageDialogFragment extends DialogFragment {
             public void onClick(DialogInterface dialog, int id){
                 //user clicked take photo
                 mListener.onDialogPositiveClick(UploadImageDialogFragment.this);
-                /**
-                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                fileUri = getOutputMediaFileURI(MEDIA_TYPE_IMAGE);
-                intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
-                startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
-                 **/
             }
         });
 
@@ -74,55 +63,5 @@ public class UploadImageDialogFragment extends DialogFragment {
         } catch (ClassCastException e){
             throw new ClassCastException(activity.toString() + " must implement UploadImageListener");
         }
-    }
-    /**
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data){
-        if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
-            if (resultCode == Activity.RESULT_OK) {
-                // Image captured and saved to fileUri specified in the Intent
-                Toast.makeText(getActivity(), "Image saved to:\n" +
-                        data.getData(), Toast.LENGTH_LONG).show();
-                try{
-                    fileUri = data.getData();
-                bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), fileUri);
-                itemImage = (ImageView) getActivity().findViewById(R.id.itemPhoto);
-                    itemImage.setImageBitmap(bitmap);
-            } catch(IOException e){
-
-                }}
-            else if (resultCode == Activity.RESULT_CANCELED) {
-                // User cancelled the image capture
-            } else {
-                // Image capture failed, advise user
-            }
-        }
-    }
-    //Create file Uri for saving image
-    private static Uri getOutputMediaFileURI(int type){
-        return Uri.fromFile(getOutputMediaFile(type));
-    }
-    //create File to save image
-    private static File getOutputMediaFile(int type) {
-        File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
-                Environment.DIRECTORY_PICTURES), "MyCameraApp");
-
-        //create media storage directory if it doesn't exist
-        if (!mediaStorageDir.exists()) {
-            if (!mediaStorageDir.mkdirs()) {
-                Log.d("MyCameraApp", "failed to create directory");
-                return null;
-            }
-        }
-
-        //create media file name
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        File mediaFile= new File(mediaStorageDir.getPath() + File.separator +
-                    "IMG_"+ timeStamp + ".jpg");
-        return mediaFile;
-    }
-    **/
-    public Bitmap getBitmap(){
-        return bitmap;
     }
 }

@@ -70,5 +70,8 @@
     <string name="takePhoto">Take Photo</string>
     <string name="uploadImage">Upload Image</string>
 
+    <string name="my_account">MY ACCOUNT</string>
+    <string name="email_text">Email</string>
+
 
 </resources>

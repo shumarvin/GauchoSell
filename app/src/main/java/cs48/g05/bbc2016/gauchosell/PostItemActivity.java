@@ -40,7 +40,6 @@ public class PostItemActivity extends FragmentActivity implements
     private EditText itemDescriptionText;
     private String category;
     private EditText priceText;
-    private UploadImageDialogFragment upImageDialog;
     private Uri fileUri;
     private ImageView itemImage;
 
@@ -53,7 +52,6 @@ public class PostItemActivity extends FragmentActivity implements
         itemNameText = (EditText) findViewById(R.id.item_name_field);
         itemDescriptionText = (EditText) findViewById(R.id.item_description_field);
         priceText = (EditText) findViewById(R.id.item_price_field);
-        itemImage = (ImageView) findViewById(R.id.itemPhoto);
 
         //Initialize drop-down category menu
         Spinner spinner = (Spinner) findViewById(R.id.spinner);
@@ -98,15 +96,15 @@ public class PostItemActivity extends FragmentActivity implements
         String itemDescription = itemDescriptionText.getText().toString();
         String price = priceText.getText().toString();
     }
+    //show the upload image dialog popup box
     public void showUploadImageDialog(){
         DialogFragment dialog = new UploadImageDialogFragment();
         dialog.show(getFragmentManager(), "UploadImageDialog");
     }
+    //starts the camera app
     @Override
     public void onDialogPositiveClick(DialogFragment dialog){
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        //fileUri = getOutputMediaFileURI(MEDIA_TYPE_IMAGE);
-        //intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
         startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
     }
     @Override
@@ -124,29 +122,6 @@ public class PostItemActivity extends FragmentActivity implements
                 System.out.println("Error: Capture Failed");
             }
         }
-    }
-    //Create file Uri for saving image
-    private static Uri getOutputMediaFileURI(int type){
-        return Uri.fromFile(getOutputMediaFile(type));
-    }
-    //create File to save image
-    private static File getOutputMediaFile(int type) {
-        File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
-                Environment.DIRECTORY_PICTURES), "MyCameraApp");
-
-        //create media storage directory if it doesn't exist
-        if (!mediaStorageDir.exists()) {
-            if (!mediaStorageDir.mkdirs()) {
-                Log.d("MyCameraApp", "failed to create directory");
-                return null;
-            }
-        }
-
-        //create media file name
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        File mediaFile= new File(mediaStorageDir.getPath() + File.separator +
-                "IMG_"+ timeStamp + ".jpg");
-        return mediaFile;
     }
     @Override
     public void onDialogNegativeClick(DialogFragment dialog) {
