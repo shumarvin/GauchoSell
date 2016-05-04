@@ -45,6 +45,14 @@
                 android:textSize="9dp" />
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Seller"
+                android:id="@+id/seller_name"
+                android:textSize="9dp" />
+
+            <TextView
                 android:layout_width="152dp"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
