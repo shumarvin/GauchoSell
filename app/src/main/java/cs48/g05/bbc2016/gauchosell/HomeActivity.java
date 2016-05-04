@@ -1,10 +1,13 @@
 package cs48.g05.bbc2016.gauchosell;
 
 import android.content.Intent;
+import android.graphics.Typeface;
+import android.media.audiofx.BassBoost;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
@@ -25,6 +28,12 @@ public class HomeActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        //set G logo
+        Typeface logoGFont = Typeface.createFromAsset(getAssets(), "The Heart Maze Demo.ttf");
+        TextView logoGTextView = (TextView)findViewById(R.id.g_logo);
+        logoGTextView.setTypeface(logoGFont);
+
         firebaseRef = new Firebase(Constants.FIREBASE_URL + Constants.FIREBASE_LOCATION_ITEMS);
 
         firebaseRef.addValueEventListener(new ValueEventListener() {
@@ -53,13 +62,25 @@ public class HomeActivity extends BaseActivity {
             }
         });
 
+        //intent from home to settings
+        ImageButton settingsButton = (ImageButton) findViewById(R.id.settings_button);
+        settingsButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                onSettingsClicked (view);
+            }
+        });
+
 
     }
 
     public void onAddPostClicked (View view) {
         Intent intent = new Intent(HomeActivity.this, PostItemActivity.class);
         startActivity(intent);
+    }
 
+    public void onSettingsClicked(View view) {
+        Intent intent = new Intent(HomeActivity.this, SettingsActivity.class);
+        startActivity(intent);
     }
 
 }
