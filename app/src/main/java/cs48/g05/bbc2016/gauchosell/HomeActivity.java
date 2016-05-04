@@ -7,6 +7,8 @@ import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
 
+import cs48.g05.bbc2016.gauchosell.item.Item;
+import cs48.g05.bbc2016.gauchosell.util.Constants;
 
 
 /**

@@ -1,7 +1,12 @@
-package cs48.g05.bbc2016.gauchosell;
+package cs48.g05.bbc2016.gauchosell.user;
 
 import java.sql.Timestamp;
 import java.util.UUID;
+
+import cs48.g05.bbc2016.gauchosell.item.Bid;
+import cs48.g05.bbc2016.gauchosell.util.EmbeddedImage;
+import cs48.g05.bbc2016.gauchosell.item.Item;
+import cs48.g05.bbc2016.gauchosell.item.ItemInformation;
 
 /**
  * Created by dav on 4/17/16.
@@ -13,7 +18,7 @@ public class User {
     private String lastName;
     private String username;
     private String email;
-    //image
+    //TODO: image
 
     public User() {}
 
@@ -78,11 +83,11 @@ public class User {
     public boolean postItem(ItemInformation itemDescription, String saleStatus, UUID itemID, Bid[]bids){
         return true; //TODO: Firebase reference
     }
-    public boolean bitItem(Timestamp time, String username, UUID itemID, double amount){
+    public boolean bidItem(Timestamp time, String username, UUID itemID, double amount){
         return true;
     }
     public boolean createAccount(String firstName, String lastName, String username, EmbeddedImage profilePicture, int birthMonth,
-                                     int birthYear, char[]password, String email){
+                                 int birthYear, char[]password, String email){
         return true;
     }
     public boolean deleteItem(Item item){
@@ -110,7 +115,7 @@ public class User {
                                      int birthYear, char[]password, String email){
         return true;
     }
-    public boolean updateInforItem(ItemInformation itemDescription, String saleStatus, UUID itemID, Bid[]bids){
+    public boolean updateItemInfo(ItemInformation itemDescription, String saleStatus, UUID itemID, Bid[]bids){
         return true;
     }
 

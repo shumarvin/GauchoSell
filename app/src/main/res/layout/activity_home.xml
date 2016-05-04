@@ -7,8 +7,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="cs48.g05.bbc2016.gauchosell.home"
     android:backgroundTint="@android:color/transparent">
+    <!--tools:context="cs48.g05.bbc2016.gauchosell.home"-->
 
     <TextView
         android:layout_width="wrap_content"
@@ -44,6 +44,7 @@
             android:src="@drawable/home_button"
             android:background="@android:color/transparent"
             android:paddingEnd="27dp"
+            android:paddingRight="27dp"
             android:contentDescription="@string/homeButton" />
 
         <ImageButton
@@ -55,6 +56,7 @@
             android:src="@drawable/settings_button"
             android:background="@android:color/transparent"
             android:paddingEnd="27dp"
+            android:paddingRight="27dp"
             android:contentDescription="@string/settings" />
 
         <ImageButton
@@ -66,6 +68,7 @@
             android:src="@drawable/myitems_button"
             android:background="@android:color/transparent"
             android:paddingEnd="27dp"
+            android:paddingRight="27dp"
             android:contentDescription="@string/myitemsButton" />
 
         <ImageButton
@@ -77,6 +80,7 @@
             android:src="@drawable/bids_button"
             android:background="@android:color/transparent"
             android:paddingEnd="27dp"
+            android:paddingRight="27dp"
             android:contentDescription="@string/bidsButton"
             android:baselineAlignBottom="true" />
 
@@ -89,6 +93,7 @@
             android:src="@drawable/like_button"
             android:background="@android:color/transparent"
             android:paddingEnd="0dp"
+            android:paddingRight="0dp"
             android:contentDescription="@string/likeButton" />
 
     </LinearLayout>

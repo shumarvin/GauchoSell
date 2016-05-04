@@ -22,9 +22,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import cs48.g05.bbc2016.gauchosell.BaseActivity;
-import cs48.g05.bbc2016.gauchosell.Constants;
+import cs48.g05.bbc2016.gauchosell.util.Constants;
 import cs48.g05.bbc2016.gauchosell.R;
-import cs48.g05.bbc2016.gauchosell.User;
+import cs48.g05.bbc2016.gauchosell.user.User;
 
 /**
  * Created by dav on 4/17/16.
