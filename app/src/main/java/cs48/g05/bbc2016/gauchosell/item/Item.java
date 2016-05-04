@@ -1,6 +1,4 @@
-package cs48.g05.bbc2016.gauchosell;
-
-import android.content.ClipData;
+package cs48.g05.bbc2016.gauchosell.item;
 
 import java.util.ArrayList;
 import java.util.UUID;

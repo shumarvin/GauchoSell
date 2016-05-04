@@ -1,4 +1,4 @@
-package cs48.g05.bbc2016.gauchosell;
+package cs48.g05.bbc2016.gauchosell.item;
 
 import java.sql.Timestamp;
 import java.text.NumberFormat;

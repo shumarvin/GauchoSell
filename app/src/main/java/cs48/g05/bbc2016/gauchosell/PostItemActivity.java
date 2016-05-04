@@ -12,6 +12,8 @@ import android.widget.Spinner;
 
 import com.firebase.client.Firebase;
 
+import cs48.g05.bbc2016.gauchosell.util.Constants;
+
 public class PostItemActivity extends Activity {
     private Firebase firebaseRef;
     private EditText itemNameText;

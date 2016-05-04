@@ -1,4 +1,6 @@
-package cs48.g05.bbc2016.gauchosell;
+package cs48.g05.bbc2016.gauchosell.util;
+
+import cs48.g05.bbc2016.gauchosell.BuildConfig;
 
 /**
  * Created by dav on 4/16/16.

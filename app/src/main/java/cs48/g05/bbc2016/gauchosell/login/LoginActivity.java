@@ -16,7 +16,7 @@ import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 
 import cs48.g05.bbc2016.gauchosell.BaseActivity;
-import cs48.g05.bbc2016.gauchosell.Constants;
+import cs48.g05.bbc2016.gauchosell.util.Constants;
 import cs48.g05.bbc2016.gauchosell.HomeActivity;
 import cs48.g05.bbc2016.gauchosell.R;
 
