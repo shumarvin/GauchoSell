@@ -113,20 +113,14 @@ public class PostItemActivity extends FragmentActivity implements
         if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
             if (resultCode == Activity.RESULT_OK) {
                 // Image captured and saved to fileUri specified in the Intent
-                Toast.makeText(this, "Image saved to:\n" +
-                        data.getData(), Toast.LENGTH_LONG).show();
-                try{
-                    fileUri = data.getData();
-                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), fileUri);
-                    itemImage = (ImageView) findViewById(R.id.itemPhoto);
-                    itemImage.setImageBitmap(bitmap);
-                } catch(IOException e){
-
-                }}
+                fileUri = data.getData();
+                itemImage.setImageURI(fileUri);
+               }
             else if (resultCode == Activity.RESULT_CANCELED) {
                 // User cancelled the image capture
             } else {
                 // Image capture failed, advise user
+                System.out.println("Error: Capture Failed");
             }
         }
     }
