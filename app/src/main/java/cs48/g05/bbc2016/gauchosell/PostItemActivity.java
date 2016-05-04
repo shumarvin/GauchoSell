@@ -3,7 +3,9 @@ package cs48.g05.bbc2016.gauchosell;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DialogFragment;
+import android.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -15,7 +17,8 @@ import com.firebase.client.Firebase;
 
 import cs48.g05.bbc2016.gauchosell.util.Constants;
 
-public class PostItemActivity extends Activity implements UploadImageDialogFragment.UploadImageListener {
+public class PostItemActivity extends FragmentActivity implements
+                                                UploadImageDialogFragment.UploadImageListener {
     private Firebase firebaseRef;
     private EditText itemNameText;
     private EditText itemDescriptionText;
@@ -69,12 +72,16 @@ public class PostItemActivity extends Activity implements UploadImageDialogFragm
     }
 
     public void onUploadImageClick(View v) {
-
+        showUploadImageDialog();
     }
     public void onPostItemClick(View v) {
         String itemName = itemNameText.getText().toString();
         String itemDescription = itemDescriptionText.getText().toString();
         String price = priceText.getText().toString();
+    }
+    public void showUploadImageDialog(){
+        DialogFragment dialog = new UploadImageDialogFragment();
+        dialog.show(getFragmentManager(), "UploadImageDialog");
     }
     @Override
     public void onDialogPositiveClick(DialogFragment dialog){
