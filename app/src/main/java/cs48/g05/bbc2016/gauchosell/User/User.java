@@ -93,15 +93,13 @@ public class User {
     public boolean deleteItem(Item item){
         return true;
     }
-    public boolean repostIrem(Item item){
+    public boolean repostItem(Item item){
         return true;
     }
     public boolean followItem(Item item){
         return true;
     }
-    public void chooseWinningbid(Bid bid){
-
-    }
+    public void chooseWinningBid(Bid bid){}
     public boolean unfollowItem(Item item){
         return true;
     }
@@ -112,11 +110,7 @@ public class User {
         return true;
     }
     public boolean updateAccountInfo(String firstName, String lastName, String username, EmbeddedImage profilePicture, int birthMonth,
-                                     int birthYear, char[]password, String email){
-        return true;
-    }
-    public boolean updateItemInfo(ItemInformation itemDescription, String saleStatus, UUID itemID, Bid[]bids){
-        return true;
-    }
+                                     int birthYear, char[]password, String email){return true;}
+    public boolean updateItemInfo(ItemInformation itemDescription, String saleStatus, UUID itemID, Bid[]bids){return true;}
 
 }
