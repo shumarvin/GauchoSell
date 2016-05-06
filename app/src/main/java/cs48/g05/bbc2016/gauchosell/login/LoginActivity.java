@@ -12,10 +12,19 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.firebase.client.AuthData;
+import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
+import com.firebase.client.Query;
+import com.firebase.client.ValueEventListener;
 
 import cs48.g05.bbc2016.gauchosell.BaseActivity;
+import cs48.g05.bbc2016.gauchosell.GauchoSell;
+import cs48.g05.bbc2016.gauchosell.feeds.FollowingFeed;
+import cs48.g05.bbc2016.gauchosell.feeds.MyBidsFeed;
+import cs48.g05.bbc2016.gauchosell.feeds.MyItemsFeed;
+import cs48.g05.bbc2016.gauchosell.user.Account;
+import cs48.g05.bbc2016.gauchosell.user.User;
 import cs48.g05.bbc2016.gauchosell.util.Constants;
 import cs48.g05.bbc2016.gauchosell.HomeActivity;
 import cs48.g05.bbc2016.gauchosell.R;
@@ -36,6 +45,7 @@ public class LoginActivity extends BaseActivity {
         setContentView(R.layout.activity_login);
         firebaseRef = new Firebase(Constants.FIREBASE_URL);
 
+        //create listeners for buttons
         TextView signUpLink = (TextView) findViewById(R.id.signupLink);
         signUpLink.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
@@ -65,11 +75,15 @@ public class LoginActivity extends BaseActivity {
     /**
      * Open CreateAccountActivity when user taps on "Sign up" TextView
      */
-    public void onSignUpPressed(View view) {
+    private void onSignUpPressed(View view) {
         Intent intent = new Intent(LoginActivity.this, CreateAccountActivity.class);
         startActivity(intent);
     }
 
+    private void onLoginPressed(View view) {
+        authUserDialog.show();
+        authUser();
+    }
 
     private void authUser() {
         //firebaseRef.authWithPassword(emailInput.toString(), passwordInput.toString(), new Firebase.AuthResultHandler() {
@@ -78,7 +92,13 @@ public class LoginActivity extends BaseActivity {
             public void onAuthenticated(AuthData authData) {
                 Log.d(LOG_TAG, getString(R.string.successful_authentication) + authData.getUid());
                 authUserDialog.dismiss();
+                //get info on user, and change to home screen
+                buildAccount();
                 clearForm();
+//                MyBidsFeed bids = queryBids(); //TODO: this is just some pseudocode but
+//                MyItemsFeed items = queryItems(); //We probably want ot do something similar to this
+//                FollowingFeed following = queryFollowing();
+                //GauchoSell.user.loginUser(userAccount, bids, items, following);
                 Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                 startActivity(intent);
             }
@@ -98,6 +118,25 @@ public class LoginActivity extends BaseActivity {
         });
     }
 
+    private void buildAccount() {
+        String userUrl = Constants.FIREBASE_URL + "/" + Constants.FIREBASE_LOCATION_USERS;
+        String email = emailInput.getText().toString().replace(".",",");
+        Firebase userTable = new Firebase(userUrl).child(email);
+        userTable.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                System.out.println(dataSnapshot);
+                GauchoSell.user.setAccount(dataSnapshot.getValue(Account.class));
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+                System.out.println("LOOK HERE 2");
+
+            }
+        });
+    }
+
     private void hookInView(){
         emailInput = (EditText) findViewById(R.id.emailInput);
         passwordInput = (EditText) findViewById(R.id.passwordInput);
@@ -112,8 +151,4 @@ public class LoginActivity extends BaseActivity {
         passwordInput.setText("");
     }
 
-    private void onLoginPressed(View view) {
-        authUserDialog.show();
-        authUser();
-    }
 }

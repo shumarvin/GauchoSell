@@ -22,9 +22,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 import cs48.g05.bbc2016.gauchosell.BaseActivity;
+import cs48.g05.bbc2016.gauchosell.user.Account;
 import cs48.g05.bbc2016.gauchosell.util.Constants;
 import cs48.g05.bbc2016.gauchosell.R;
 import cs48.g05.bbc2016.gauchosell.user.User;
+import cs48.g05.bbc2016.gauchosell.util.EmbeddedImage;
 
 /**
  * Created by dav on 4/17/16.
@@ -72,7 +74,7 @@ public class CreateAccountActivity extends BaseActivity {
     }
 
     /**
-    * Link layout elements from XML and set up the progress dialog
+     * Link layout elements from XML and set up the progress dialog
      */
     public void hookInView() {
         fNameItem = (EditText) findViewById(R.id.FirstNameSignUp);
@@ -145,13 +147,14 @@ public class CreateAccountActivity extends BaseActivity {
         HashMap<String, Object> userUidMapping = new HashMap<String, Object>();
 
         //create hashmap representation of user
-        User newUser = new User(Integer.parseInt(birthYearItem.getText().toString()),
-                Integer.parseInt(birthMonthItem.getText().toString()),
+        EmbeddedImage image = new EmbeddedImage();
+        Account newAccount = new Account(Integer.parseInt(birthMonthItem.getText().toString()),
+                Integer.parseInt(birthYearItem.getText().toString()), emailItem.getText().toString(),
                 fNameItem.getText().toString(), lNameItem.getText().toString(),
-                usernameItem.getText().toString(), emailItem.getText().toString());
-        HashMap<String, Object> newUserMap = (HashMap<String, Object>) new ObjectMapper().convertValue(newUser, Map.class);
+                new Date().getTime(), usernameItem.getText().toString());
+        HashMap<String, Object> newUserMap = (HashMap<String, Object>) new ObjectMapper().convertValue(newAccount, Map.class);
         //raw timestamp of when user joins
-        newUserMap.put("timeJoined",new Date().getTime());
+        //newUserMap.put("timeJoined",new Date().getTime());
 
         //Add user and UID to map to push to database
         userUidMapping.put("/"+Constants.FIREBASE_LOCATION_USERS + "/" + encodedEmail, newUserMap);
@@ -176,7 +179,7 @@ public class CreateAccountActivity extends BaseActivity {
 
     private boolean isValidEmail(String email){
         boolean isValidEmail = (email != null &&
-            android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches());
+                android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches());
         if (!isValidEmail) {
             emailItem.setError(String.format(getString(R.string.invalid_email_error),email));
         }

@@ -1,5 +1,7 @@
 package cs48.g05.bbc2016.gauchosell.user;
 
+import java.util.Date;
+
 import cs48.g05.bbc2016.gauchosell.util.EmbeddedImage;
 
 /**
@@ -12,19 +14,23 @@ public class Account {
     private String lastName;
     private String username;
     private String email;
-    private EmbeddedImage image;
-    private char[] password;
+    //private EmbeddedImage image;
+    private long timeJoined;
 
-    public Account(int birthYear, int birthMonth, String firstName, String lastName, String username, String email, EmbeddedImage image, char[] password) {
-        this.birthYear = birthYear;
+    //http://stackoverflow.com/questions/7625783/jsonmappingexception-no-suitable-constructor-found-for-type-simple-type-class
+    //We need this so that firebase is happy with construction an Account
+    public Account() { } //dummy constructor
+
+    public Account(int birthMonth, int birthYear, String email, String firstName, String lastName, long timeJoined, String username) {
         this.birthMonth = birthMonth;
+        this.birthYear = birthYear;
+        this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.timeJoined = timeJoined;
         this.username = username;
-        this.email = email;
-        this.image = image;
-        this.password = password;
     }
+
 
     public int getBirthYear() { return birthYear; }
 
@@ -50,11 +56,11 @@ public class Account {
 
     public void setEmail(String email) { this.email = email; }
 
-    public EmbeddedImage getImage() { return image; }
+//    public EmbeddedImage getImage() { return image; }
+//
+//    public void setImage(EmbeddedImage image) { this.image = image; }
 
-    public void setImage(EmbeddedImage image) { this.image = image; }
+    public long getTimeJoined() { return timeJoined; }
 
-    public char[] getPassword() { return password; }
-
-    public void setPassword(char[] password) { this.password = password; }
+    public void setTimeJoined(long timeJoined) { this.timeJoined = timeJoined; }
 }
