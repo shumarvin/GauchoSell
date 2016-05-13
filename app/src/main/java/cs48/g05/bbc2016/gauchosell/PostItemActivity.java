@@ -123,7 +123,6 @@ public class PostItemActivity extends FragmentActivity implements
     @Override
     public void onDialogPositiveClick(DialogFragment dialog){
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        intent.putExtra(android.provider.MediaStore.EXTRA_OUTPUT, fileUri);
         startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
     }
     //Get the image captured from the camera
@@ -155,7 +154,7 @@ public class PostItemActivity extends FragmentActivity implements
                 itemImage.setImageBitmap(BitmapFactory
                         .decodeFile(imgDecodableString));
             }
-            imageFile = uploadImageAdapter.convertImage(data);
+            imageFile = uploadImageAdapter.convertImage(R.id.uploadImage);
         }
 
             else if (resultCode == Activity.RESULT_CANCELED) {
@@ -170,7 +169,6 @@ public class PostItemActivity extends FragmentActivity implements
     @Override
     public void onDialogNegativeClick(DialogFragment dialog) {
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        intent.putExtra(android.provider.MediaStore.EXTRA_OUTPUT, fileUri);
         startActivityForResult(intent, MEDIA_TYPE_IMAGE);
     }
 }

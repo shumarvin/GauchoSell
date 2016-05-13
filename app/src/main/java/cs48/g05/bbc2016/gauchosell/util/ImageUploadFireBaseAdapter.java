@@ -26,8 +26,8 @@ public class ImageUploadFireBaseAdapter {
     //converts image to base64 string to be stored on Firebase
     //code taken from user skabir from Stack Overflow:
     //http://stackoverflow.com/questions/26292969/can-i-store-image-files-in-firebase-using-java-api
-    public String convertImage(Intent data){
-        Bitmap bmp = (Bitmap) data.getExtras().get(MediaStore.EXTRA_OUTPUT);
+    public String convertImage(int imageID){
+        Bitmap bmp =  BitmapFactory.decodeResource(context.getResources(),imageID);
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         bmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
         bmp.recycle();
