@@ -123,24 +123,24 @@ public class PostItemActivity extends FragmentActivity implements
     @Override
     public void onDialogPositiveClick(DialogFragment dialog){
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        intent.putExtra(android.provider.MediaStore.EXTRA_OUTPUT, fileUri);
         startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
     }
     //Get the image captured from the camera
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data){
         if (resultCode == Activity.RESULT_OK) {
-            imageFile = uploadImageAdapter.convertImage(data);
             //image taken from camera
             if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
                 // Image captured and saved to fileUri specified in the Intent
                 fileUri = data.getData();
                 itemImage.setImageURI(fileUri);
-               }
+            }
             //image taken from gallery app
             //code taken from http://programmerguru.com/android-tutorial/how-to-pick-image-from-gallery/
-            else if(requestCode == MEDIA_TYPE_IMAGE){
+            else if (requestCode == MEDIA_TYPE_IMAGE) {
                 fileUri = data.getData();
-                String[] filePathColumn = { MediaStore.Images.Media.DATA };
+                String[] filePathColumn = {MediaStore.Images.Media.DATA};
 
                 // Get the cursor
                 Cursor cursor = getContentResolver().query(fileUri,
@@ -155,18 +155,22 @@ public class PostItemActivity extends FragmentActivity implements
                 itemImage.setImageBitmap(BitmapFactory
                         .decodeFile(imgDecodableString));
             }
+            imageFile = uploadImageAdapter.convertImage(data);
+        }
+
             else if (resultCode == Activity.RESULT_CANCELED) {
                 // User cancelled the image capture
             } else {
                 // Image capture failed, advise user
                 System.out.println("Error: Capture Failed");
             }
-        }
+
     }
     //User clicked upload image, which will take them to the Gallery app
     @Override
     public void onDialogNegativeClick(DialogFragment dialog) {
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        intent.putExtra(android.provider.MediaStore.EXTRA_OUTPUT, fileUri);
         startActivityForResult(intent, MEDIA_TYPE_IMAGE);
     }
 }
