@@ -1,11 +1,30 @@
 package cs48.g05.bbc2016.gauchosell;
 
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
+import android.media.Image;
+import android.media.MediaRecorder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
+import android.view.View;
+
+import com.firebase.client.Firebase;
+
+import cs48.g05.bbc2016.gauchosell.util.Constants;
+
+//import com.firebase.client.core.view.View;
 
 public class SettingsActivity extends AppCompatActivity {
+    private Firebase firebaseRef;
+    private EditText firstName;
+    private EditText lastName;
+    private EditText userName;
+    private EditText email;
+    private EditText password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,5 +35,59 @@ public class SettingsActivity extends AppCompatActivity {
         Typeface logoGFont = Typeface.createFromAsset(getAssets(), "The Heart Maze Demo.ttf");
         TextView logoGTextView = (TextView)findViewById(R.id.g_logo);
         logoGTextView.setTypeface(logoGFont);
+
+        firebaseRef = new Firebase(Constants.FIREBASE_URL);
+        //display info from database
+
+        firstName = (EditText) findViewById(R.id.first_name_edit_field);
+        firstName.setText(GauchoSell.user.getAccount().getFirstName());
+
+        lastName = (EditText) findViewById(R.id.last_name_edit_field);
+        lastName.setText(GauchoSell.user.getAccount().getLastName());
+
+        userName = (EditText) findViewById(R.id.username_edit_field);
+        userName.setText(GauchoSell.user.getAccount().getUsername());
+
+        email = (EditText) findViewById(R.id.email_edit_field);
+        email.setText(GauchoSell.user.getAccount().getEmail());
+
+
+
+        Button saveChangesButton = (Button) findViewById(R.id.save_button);
+        saveChangesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onSaveChangesClick(v);
+            }
+        });
+    }
+
+    public void onSaveChangesClick(View view){
+        if(!isValidForm())
+            return;
+        GauchoSell.user.getAccount().setFirstName(firstName.getText().toString());
+        GauchoSell.user.getAccount().setLastName((lastName.getText().toString()));
+        //... do the rest //dialogue box for succesfulyl changed Or something like that TODO
+        Firebase userRef = firebaseRef.child(Constants.FIREBASE_LOCATION_USERS)
+                .child(GauchoSell.user.getAccount().getEmail().replace(".",","));
+        userRef.setValue(GauchoSell.user.getAccount());
+    }
+
+    private boolean isValidForm() {
+        boolean result = true;
+        if (firstName.getText().toString().equals("")) {
+            firstName.setError(getString(R.string.empty_field_error));
+            result = false;
+        }
+
+        if (lastName.getText().toString().equals("")) {
+            lastName.setError(getString(R.string.empty_field_error));
+            result = false;
+        }
+
+//        if (username.getText().toString().equals(""))
+//            username.setError(getString(R.string.empty_field_error));
+
+        return result;
     }
 }

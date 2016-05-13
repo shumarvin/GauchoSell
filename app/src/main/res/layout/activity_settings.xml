@@ -76,7 +76,7 @@
             android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
-            android:hint="GET FIRST NAME"
+            android:hint="Change First Name"
             android:ems="10"
             android:id="@+id/first_name_edit_field"
             android:editable="true" />
@@ -92,7 +92,7 @@
             android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
-            android:hint="GET LAST NAME"
+            android:hint="Change Last Name"
             android:ems="10"
             android:id="@+id/last_name_edit_field"
             android:editable="true" />
@@ -108,7 +108,7 @@
             android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
-            android:hint="GET USERNAME"
+            android:hint="Change Username"
             android:ems="10"
             android:id="@+id/username_edit_field"
             android:editable="true" />
@@ -124,7 +124,7 @@
             android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
-            android:hint="GET EMAIL"
+            android:hint="Change Email"
             android:ems="10"
             android:id="@+id/email_edit_field"
             android:editable="true" />
@@ -140,7 +140,7 @@
             android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
-            android:hint="@string/password_placeholder"
+            android:hint="Change Password"
             android:ems="10"
             android:id="@+id/password_edit_field" />
 
