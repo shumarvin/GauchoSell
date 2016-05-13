@@ -154,7 +154,7 @@ public class PostItemActivity extends FragmentActivity implements
                 itemImage.setImageBitmap(BitmapFactory
                         .decodeFile(imgDecodableString));
             }
-            imageFile = uploadImageAdapter.convertImage(R.id.uploadImage);
+            imageFile = uploadImageAdapter.convertImage(R.id.itemPhoto);
         }
 
             else if (resultCode == Activity.RESULT_CANCELED) {
