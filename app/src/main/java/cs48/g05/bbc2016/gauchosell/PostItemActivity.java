@@ -28,7 +28,10 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import cs48.g05.bbc2016.gauchosell.item.Bid;
+import cs48.g05.bbc2016.gauchosell.item.ItemInformation;
 import cs48.g05.bbc2016.gauchosell.util.Constants;
+import cs48.g05.bbc2016.gauchosell.util.EmbeddedImage;
 
 public class PostItemActivity extends FragmentActivity implements
                                                 UploadImageDialogFragment.UploadImageListener {
@@ -87,6 +90,7 @@ public class PostItemActivity extends FragmentActivity implements
                 onPostItemClick(v);
             }
         });
+
     }
 
     public void onUploadImageClick(View v) {
@@ -95,7 +99,12 @@ public class PostItemActivity extends FragmentActivity implements
     public void onPostItemClick(View v) {
         String itemName = itemNameText.getText().toString();
         String itemDescription = itemDescriptionText.getText().toString();
-        String price = priceText.getText().toString();
+        double price = Double.parseDouble(priceText.getText().toString());
+        //Temporary fake image placeholder
+        EmbeddedImage tempImage = new EmbeddedImage();
+        ItemInformation itemInfo=new ItemInformation(price, itemName, category, tempImage, itemDescription);
+        GauchoSell.user.postItem(itemInfo);
+
     }
     //show the upload image dialog popup box
     public void showUploadImageDialog(){

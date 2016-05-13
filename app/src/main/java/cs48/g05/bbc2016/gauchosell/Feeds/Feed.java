@@ -8,8 +8,11 @@ import cs48.g05.bbc2016.gauchosell.item.Item;
  * Created by icema_000 on 4/29/2016.
  */
 public abstract class Feed {
-    private ArrayList<Item> items;
+    protected ArrayList<Item> items;
 
+    public Feed() {
+        items=new ArrayList<>();
+    }
     public ArrayList<Item> retrieveFeed(){
         return items;
     }

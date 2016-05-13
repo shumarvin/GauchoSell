@@ -1,5 +1,7 @@
 package cs48.g05.bbc2016.gauchosell.item;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -14,9 +16,9 @@ public class Item {
     private ArrayList<Bid> bids;
 
     public Item(){}
-    public Item(ItemInformation itemDescription, String saleStatus) {
+    public Item(ItemInformation itemDescription) {
         this.itemDescription = itemDescription;
-        this.saleStatus = saleStatus;
+        this.saleStatus = "Not Sold";
         this.itemID = UUID.randomUUID();
         this.bids = new ArrayList<Bid>();
     }
