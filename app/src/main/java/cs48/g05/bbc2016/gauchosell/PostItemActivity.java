@@ -5,7 +5,9 @@ import android.app.AlertDialog;
 import android.app.DialogFragment;
 import android.app.Fragment;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -45,6 +47,7 @@ public class PostItemActivity extends FragmentActivity implements
     private EditText priceText;
     private Uri fileUri;
     private ImageView itemImage;
+    private String imgDecodableString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,14 +120,32 @@ public class PostItemActivity extends FragmentActivity implements
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
     }
+    //Get the image captured from the camera
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data){
-        if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
-            if (resultCode == Activity.RESULT_OK) {
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
                 // Image captured and saved to fileUri specified in the Intent
                 fileUri = data.getData();
                 itemImage.setImageURI(fileUri);
                }
+            else if(requestCode == MEDIA_TYPE_IMAGE){
+                fileUri = data.getData();
+                String[] filePathColumn = { MediaStore.Images.Media.DATA };
+
+                // Get the cursor
+                Cursor cursor = getContentResolver().query(fileUri,
+                        filePathColumn, null, null, null);
+                // Move to first row
+                cursor.moveToFirst();
+
+                int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+                imgDecodableString = cursor.getString(columnIndex);
+                cursor.close();
+                // Set the Image in ImageView after decoding the String
+                itemImage.setImageBitmap(BitmapFactory
+                        .decodeFile(imgDecodableString));
+            }
             else if (resultCode == Activity.RESULT_CANCELED) {
                 // User cancelled the image capture
             } else {
@@ -133,8 +154,11 @@ public class PostItemActivity extends FragmentActivity implements
             }
         }
     }
+    //User clicked upload image, which will take them to the Gallery app
     @Override
     public void onDialogNegativeClick(DialogFragment dialog) {
+        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(intent, MEDIA_TYPE_IMAGE);
     }
 }
 
