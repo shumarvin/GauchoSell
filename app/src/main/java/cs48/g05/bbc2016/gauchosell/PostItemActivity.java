@@ -51,6 +51,7 @@ public class PostItemActivity extends FragmentActivity implements
     private Uri fileUri;
     private ImageView itemImage;
     private String imgDecodableString;
+    private String imageFile;
     private ImageUploadFireBaseAdapter uploadImageAdapter;
 
     @Override
@@ -109,7 +110,6 @@ public class PostItemActivity extends FragmentActivity implements
         String itemName = itemNameText.getText().toString();
         String itemDescription = itemDescriptionText.getText().toString();
         double price = Double.parseDouble(priceText.getText().toString());
-        String imageFile = uploadImageAdapter.convertImage(R.id.uploadImage);
         ItemInformation itemInfo=new ItemInformation(price, itemName, category, imageFile, itemDescription);
         GauchoSell.user.postItem(itemInfo);
 
@@ -129,6 +129,7 @@ public class PostItemActivity extends FragmentActivity implements
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data){
         if (resultCode == Activity.RESULT_OK) {
+            imageFile = uploadImageAdapter.convertImage(data);
             //image taken from camera
             if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
                 // Image captured and saved to fileUri specified in the Intent
