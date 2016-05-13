@@ -5,12 +5,15 @@ import android.app.AlertDialog;
 import android.app.DialogFragment;
 import android.app.Fragment;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.app.FragmentActivity;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -23,6 +26,7 @@ import android.widget.Toast;
 
 import com.firebase.client.Firebase;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -32,6 +36,7 @@ import cs48.g05.bbc2016.gauchosell.item.Bid;
 import cs48.g05.bbc2016.gauchosell.item.ItemInformation;
 import cs48.g05.bbc2016.gauchosell.util.Constants;
 import cs48.g05.bbc2016.gauchosell.util.EmbeddedImage;
+import cs48.g05.bbc2016.gauchosell.util.ImageUploadFireBaseAdapter;
 
 public class PostItemActivity extends FragmentActivity implements
                                                 UploadImageDialogFragment.UploadImageListener {
@@ -45,12 +50,16 @@ public class PostItemActivity extends FragmentActivity implements
     private EditText priceText;
     private Uri fileUri;
     private ImageView itemImage;
+    private String imgDecodableString;
+    private String imageFile;
+    private ImageUploadFireBaseAdapter uploadImageAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_item);
         firebaseRef = new Firebase(Constants.FIREBASE_URL);
+        uploadImageAdapter = new ImageUploadFireBaseAdapter(this);
 
         itemNameText = (EditText) findViewById(R.id.item_name_field);
         itemDescriptionText = (EditText) findViewById(R.id.item_description_field);
@@ -66,6 +75,7 @@ public class PostItemActivity extends FragmentActivity implements
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                //set category to the one the user selected
                 category = (String) parent.getItemAtPosition(position);
             }
 
@@ -100,9 +110,7 @@ public class PostItemActivity extends FragmentActivity implements
         String itemName = itemNameText.getText().toString();
         String itemDescription = itemDescriptionText.getText().toString();
         double price = Double.parseDouble(priceText.getText().toString());
-        //Temporary fake image placeholder
-        EmbeddedImage tempImage = new EmbeddedImage();
-        ItemInformation itemInfo=new ItemInformation(price, itemName, category, tempImage, itemDescription);
+        ItemInformation itemInfo=new ItemInformation(price, itemName, category, imageFile, itemDescription);
         GauchoSell.user.postItem(itemInfo);
 
     }
@@ -115,26 +123,55 @@ public class PostItemActivity extends FragmentActivity implements
     @Override
     public void onDialogPositiveClick(DialogFragment dialog){
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        intent.putExtra(android.provider.MediaStore.EXTRA_OUTPUT, fileUri);
         startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
     }
+    //Get the image captured from the camera
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data){
-        if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
-            if (resultCode == Activity.RESULT_OK) {
+        if (resultCode == Activity.RESULT_OK) {
+            //image taken from camera
+            if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
                 // Image captured and saved to fileUri specified in the Intent
                 fileUri = data.getData();
                 itemImage.setImageURI(fileUri);
-               }
+            }
+            //image taken from gallery app
+            //code taken from http://programmerguru.com/android-tutorial/how-to-pick-image-from-gallery/
+            else if (requestCode == MEDIA_TYPE_IMAGE) {
+                fileUri = data.getData();
+                String[] filePathColumn = {MediaStore.Images.Media.DATA};
+
+                // Get the cursor
+                Cursor cursor = getContentResolver().query(fileUri,
+                        filePathColumn, null, null, null);
+                // Move to first row
+                cursor.moveToFirst();
+
+                int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+                imgDecodableString = cursor.getString(columnIndex);
+                cursor.close();
+                // Set the Image in ImageView after decoding the String
+                itemImage.setImageBitmap(BitmapFactory
+                        .decodeFile(imgDecodableString));
+            }
+            imageFile = uploadImageAdapter.convertImage(data);
+        }
+
             else if (resultCode == Activity.RESULT_CANCELED) {
                 // User cancelled the image capture
             } else {
                 // Image capture failed, advise user
                 System.out.println("Error: Capture Failed");
             }
-        }
+
     }
+    //User clicked upload image, which will take them to the Gallery app
     @Override
     public void onDialogNegativeClick(DialogFragment dialog) {
+        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        intent.putExtra(android.provider.MediaStore.EXTRA_OUTPUT, fileUri);
+        startActivityForResult(intent, MEDIA_TYPE_IMAGE);
     }
 }
 
