@@ -36,6 +36,7 @@ import cs48.g05.bbc2016.gauchosell.item.Bid;
 import cs48.g05.bbc2016.gauchosell.item.ItemInformation;
 import cs48.g05.bbc2016.gauchosell.util.Constants;
 import cs48.g05.bbc2016.gauchosell.util.EmbeddedImage;
+import cs48.g05.bbc2016.gauchosell.util.ImageUploadFireBaseAdapter;
 
 public class PostItemActivity extends FragmentActivity implements
                                                 UploadImageDialogFragment.UploadImageListener {
@@ -50,12 +51,14 @@ public class PostItemActivity extends FragmentActivity implements
     private Uri fileUri;
     private ImageView itemImage;
     private String imgDecodableString;
+    private ImageUploadFireBaseAdapter uploadImageAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_item);
         firebaseRef = new Firebase(Constants.FIREBASE_URL);
+        uploadImageAdapter = new ImageUploadFireBaseAdapter(this);
 
         itemNameText = (EditText) findViewById(R.id.item_name_field);
         itemDescriptionText = (EditText) findViewById(R.id.item_description_field);
@@ -106,14 +109,7 @@ public class PostItemActivity extends FragmentActivity implements
         String itemName = itemNameText.getText().toString();
         String itemDescription = itemDescriptionText.getText().toString();
         double price = Double.parseDouble(priceText.getText().toString());
-        Bitmap bmp =  BitmapFactory.decodeResource(getResources(), R.id.uploadImage);//your image
-        ByteArrayOutputStream bYtE = new ByteArrayOutputStream();
-        bmp.compress(Bitmap.CompressFormat.PNG, 100, bYtE);
-        bmp.recycle();
-        byte[] byteArray = bYtE.toByteArray();
-        String imageFile = Base64.encodeToString(byteArray, Base64.DEFAULT);
-        //Temporary fake image placeholder
-        EmbeddedImage tempImage = new EmbeddedImage();
+        String imageFile = uploadImageAdapter.convertImage(R.id.uploadImage);
         ItemInformation itemInfo=new ItemInformation(price, itemName, category, imageFile, itemDescription);
         GauchoSell.user.postItem(itemInfo);
 
