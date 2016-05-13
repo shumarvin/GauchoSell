@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.app.FragmentActivity;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -25,6 +26,7 @@ import android.widget.Toast;
 
 import com.firebase.client.Firebase;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -69,6 +71,7 @@ public class PostItemActivity extends FragmentActivity implements
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                //set category to the one the user selected
                 category = (String) parent.getItemAtPosition(position);
             }
 
@@ -103,9 +106,15 @@ public class PostItemActivity extends FragmentActivity implements
         String itemName = itemNameText.getText().toString();
         String itemDescription = itemDescriptionText.getText().toString();
         double price = Double.parseDouble(priceText.getText().toString());
+        Bitmap bmp =  BitmapFactory.decodeResource(getResources(), R.id.uploadImage);//your image
+        ByteArrayOutputStream bYtE = new ByteArrayOutputStream();
+        bmp.compress(Bitmap.CompressFormat.PNG, 100, bYtE);
+        bmp.recycle();
+        byte[] byteArray = bYtE.toByteArray();
+        String imageFile = Base64.encodeToString(byteArray, Base64.DEFAULT);
         //Temporary fake image placeholder
         EmbeddedImage tempImage = new EmbeddedImage();
-        ItemInformation itemInfo=new ItemInformation(price, itemName, category, tempImage, itemDescription);
+        ItemInformation itemInfo=new ItemInformation(price, itemName, category, imageFile, itemDescription);
         GauchoSell.user.postItem(itemInfo);
 
     }
@@ -124,11 +133,14 @@ public class PostItemActivity extends FragmentActivity implements
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data){
         if (resultCode == Activity.RESULT_OK) {
+            //image taken from camera
             if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
                 // Image captured and saved to fileUri specified in the Intent
                 fileUri = data.getData();
                 itemImage.setImageURI(fileUri);
                }
+            //image taken from gallery app
+            //code taken from http://programmerguru.com/android-tutorial/how-to-pick-image-from-gallery/
             else if(requestCode == MEDIA_TYPE_IMAGE){
                 fileUri = data.getData();
                 String[] filePathColumn = { MediaStore.Images.Media.DATA };
