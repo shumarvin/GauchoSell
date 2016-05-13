@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.provider.MediaStore;
 import android.util.Base64;
 import android.widget.ImageView;
 
@@ -26,7 +27,7 @@ public class ImageUploadFireBaseAdapter {
     //code taken from user skabir from Stack Overflow:
     //http://stackoverflow.com/questions/26292969/can-i-store-image-files-in-firebase-using-java-api
     public String convertImage(Intent data){
-        Bitmap bmp = (Bitmap) data.getExtras().get("data");
+        Bitmap bmp = (Bitmap) data.getExtras().get(MediaStore.EXTRA_OUTPUT);
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         bmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
         bmp.recycle();
