@@ -41,6 +41,9 @@
                 android:value=".login.LoginActivity" />
         </activity>
         <activity android:name=".SettingsActivity"></activity>
+        <activity android:name=".MyItemsActivity"></activity>
+        <activity android:name=".MyBidsActivity"></activity>
+        <activity android:name=".FollowingActivity"></activity>
     </application>
 
 </manifest>

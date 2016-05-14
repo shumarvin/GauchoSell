@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
+import com.firebase.client.Query;
 import com.firebase.client.ValueEventListener;
 import com.firebase.ui.FirebaseListAdapter;
 
@@ -25,46 +26,18 @@ import cs48.g05.bbc2016.gauchosell.util.Constants;
 /**
  * Created by laurendumapias on 4/30/16.
  */
-public class HomeActivity extends BaseActivity {
+public class HomeActivity extends FeedsActivity {
     private Firebase firebaseRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
-
-        //set G logo
-        Typeface logoGFont = Typeface.createFromAsset(getAssets(), "The Heart Maze Demo.ttf");
-        TextView logoGTextView = (TextView)findViewById(R.id.g_logo);
-        firebaseRef = new Firebase(Constants.FIREBASE_URL + "/" + Constants.FIREBASE_LOCATION_ITEMS);
-
-        //TODO: Do we want to do onChildAdded??
-
-        //intent from home to post item view
-        ImageButton addPostButton = (ImageButton) findViewById(R.id.add_post);
-        addPostButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                onAddPostClicked (view);
-            }
-        });
-
-        //intent from home to
-
-        //intent from home to settings
-        ImageButton settingsButton = (ImageButton) findViewById(R.id.settings_button);
-        settingsButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                onSettingsClicked (view);
-            }
-        });
-
-
-
-
+        ListView list = (ListView) findViewById(R.id.listView);
 
         //FirebaseListAdapter used to create a feed
-        ListView list = (ListView) findViewById(R.id.listView);
-        FirebaseListAdapter<Item>adapter = new FirebaseListAdapter<Item>(this, Item.class, R.layout.post_layout, firebaseRef){
+        firebaseRef = new Firebase(Constants.FIREBASE_URL + "/" + Constants.FIREBASE_LOCATION_ITEMS);
+        Query queryRef = firebaseRef.orderByPriority();
+        FirebaseListAdapter<Item>adapter = new FirebaseListAdapter<Item>(this, Item.class, R.layout.post_layout, queryRef){
             @Override
             protected void populateView(View v, Item item, int i){
 
@@ -105,16 +78,6 @@ public class HomeActivity extends BaseActivity {
         };
 
         list.setAdapter(adapter);
-    }
-
-    public void onAddPostClicked (View view) {
-        Intent intent = new Intent(HomeActivity.this, PostItemActivity.class);
-        startActivity(intent);
-    }
-
-    public void onSettingsClicked(View view) {
-        Intent intent = new Intent(HomeActivity.this, SettingsActivity.class);
-        startActivity(intent);
     }
 
 }

@@ -110,7 +110,7 @@ public class PostItemActivity extends FragmentActivity implements
         String itemName = itemNameText.getText().toString();
         String itemDescription = itemDescriptionText.getText().toString();
         double price = Double.parseDouble(priceText.getText().toString());
-        ItemInformation itemInfo=new ItemInformation(price, itemName, category, imageFile, itemDescription);
+        ItemInformation itemInfo=new ItemInformation(price, itemName, category, itemDescription);
         GauchoSell.user.postItem(itemInfo);
 
     }

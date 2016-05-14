@@ -15,18 +15,18 @@ public class ItemInformation {
     private double price;
     private String title;
     private String category;
-    private String image;
+   // private String image;
     private String description;
     private Bid highestBid;
     private Bid winningBid;
 
     public ItemInformation(){}
 
-    public ItemInformation(double price, String title, String category, String image, String description) {
+    public ItemInformation(double price, String title, String category, String description) {
         this.price = price;
         this.title = title;
         this.category = category;
-        this.image = image;
+        //this.image = image;
         this.description = description;
         this.highestBid = null;
         this.winningBid = null;
