@@ -3,6 +3,7 @@ package cs48.g05.bbc2016.gauchosell.user;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.firebase.client.Firebase;
+import com.firebase.client.ServerValue;
 
 import java.sql.Timestamp;
 import java.util.Date;
@@ -46,9 +47,14 @@ public class User {
         Firebase firebaseRef = new Firebase(Constants.FIREBASE_URL);
         HashMap<String, Object> userItemMapping = new HashMap<String, Object>();
         Item newItem = new Item(itemDescription);
+
         HashMap<String, Object> newItemMap = (HashMap<String, Object>) new ObjectMapper().convertValue(newItem, Map.class);
+
         userItemMapping.put("/"+ Constants.FIREBASE_LOCATION_ITEMS + "/" + itemDescription.getTitle(), newItemMap);
+
         firebaseRef.updateChildren(userItemMapping);
+        //firebaseRef.child(Constants.FIREBASE_LOCATION_ITEMS).setPriority(-1*newItem.getTimeCreated());
+
         return true;
     }
     public boolean bidItem(Timestamp time, String username, UUID itemID, double amount){
