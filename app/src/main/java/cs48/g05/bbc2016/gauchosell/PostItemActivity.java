@@ -125,9 +125,15 @@ public class PostItemActivity extends FragmentActivity implements
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
     }
+    //User clicked upload image, which will take them to the Gallery app
+    @Override
+    public void onDialogNegativeClick(DialogFragment dialog) {
+        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(intent, MEDIA_TYPE_IMAGE);
+    }
     //Get the image captured from the camera
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data){
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == Activity.RESULT_OK) {
             //image taken from camera
             if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
@@ -155,21 +161,13 @@ public class PostItemActivity extends FragmentActivity implements
                         .decodeFile(imgDecodableString));
             }
             imageFile = uploadImageAdapter.convertImage(R.id.itemPhoto);
+        } else if (resultCode == Activity.RESULT_CANCELED) {
+            // User cancelled the image capture
+        } else {
+            // Image capture failed, advise user
+            System.out.println("Error: Capture Failed");
         }
 
-            else if (resultCode == Activity.RESULT_CANCELED) {
-                // User cancelled the image capture
-            } else {
-                // Image capture failed, advise user
-                System.out.println("Error: Capture Failed");
-            }
-
-    }
-    //User clicked upload image, which will take them to the Gallery app
-    @Override
-    public void onDialogNegativeClick(DialogFragment dialog) {
-        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        startActivityForResult(intent, MEDIA_TYPE_IMAGE);
     }
 }
 
