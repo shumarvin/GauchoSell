@@ -53,6 +53,9 @@ public class HomeActivity extends FeedsActivity {
                 TextView price=(TextView)v.findViewById(R.id.price);
                 price.setText(item.getItemDescription().priceToString());
 
+                TextView seller=(TextView)v.findViewById(R.id.seller_name);
+                seller.setText(item.getItemDescription().getSeller());
+
                 TextView asking_price=(TextView)v.findViewById(R.id.asking_price);
                 asking_price.setText("Asking Price:");
 

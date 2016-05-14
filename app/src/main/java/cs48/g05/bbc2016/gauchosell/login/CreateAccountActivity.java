@@ -104,7 +104,7 @@ public class CreateAccountActivity extends BaseActivity {
         //note: firebase hashes passwords for you
 
         /**
-         * Checking email and username is valid
+         * Checking email and username is valid //TODO!! Check is username is unique
          */
         if(!isValidEmail(email) || !isValidUsername(userName)) return;
 
