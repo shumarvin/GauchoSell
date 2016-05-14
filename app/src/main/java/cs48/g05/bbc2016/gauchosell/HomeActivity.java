@@ -36,7 +36,7 @@ public class HomeActivity extends FeedsActivity {
 
         //FirebaseListAdapter used to create a feed
         firebaseRef = new Firebase(Constants.FIREBASE_URL + "/" + Constants.FIREBASE_LOCATION_ITEMS);
-        Query queryRef = firebaseRef.orderByChild("timeCreated");
+        Query queryRef = firebaseRef.orderByChild("priority");
         FirebaseListAdapter<Item>adapter = new FirebaseListAdapter<Item>(this, Item.class, R.layout.post_layout, queryRef){
             @Override
             protected void populateView(View v, Item item, int i){
