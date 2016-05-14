@@ -2,7 +2,9 @@ package cs48.g05.bbc2016.gauchosell.item;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.UUID;
 
 /**
@@ -14,13 +16,18 @@ public class Item {
     private String saleStatus;
     private UUID itemID;
     private ArrayList<Bid> bids;
+    private long priority;
+    private long timeCreated;
 
     public Item(){}
     public Item(ItemInformation itemDescription) {
+        long time = new Date().getTime();
         this.itemDescription = itemDescription;
         this.saleStatus = "Not Sold";
         this.itemID = UUID.randomUUID();
         this.bids = new ArrayList<Bid>();
+        this.priority= (-1)*(time); //because of how firebase ordering query works, we need to do this
+        this.timeCreated = time;
     }
 
     public ItemInformation getItemDescription() { return itemDescription; }
@@ -38,4 +45,17 @@ public class Item {
     public UUID getItemID() { return itemID; }
 
     public void setItemID(UUID itemID) { this.itemID = itemID; }
+
+    public ArrayList<Bid> getBids(){
+        return this.bids;
+    }
+
+    public long getPriority() { return priority; }
+
+    public void setPriority(long priority) { this.priority = priority; }
+
+    public long getTimeCreated() { return timeCreated; }
+
+    public void setTimeCreated(long timeCreated) { this.timeCreated = timeCreated; }
+
 }

@@ -15,21 +15,23 @@ public class ItemInformation {
     private double price;
     private String title;
     private String category;
-    private String image;
+   // private String image;
     private String description;
     private Bid highestBid;
     private Bid winningBid;
+    private String seller;
 
     public ItemInformation(){}
 
-    public ItemInformation(double price, String title, String category, String image, String description) {
+    public ItemInformation(double price, String title, String category, String description, String seller) {
         this.price = price;
         this.title = title;
         this.category = category;
-        this.image = image;
+        //this.image = image;
         this.description = description;
         this.highestBid = null;
         this.winningBid = null;
+        this.seller = seller;
     }
 
     public double getPrice() {
@@ -78,4 +80,8 @@ public class ItemInformation {
         NumberFormat formatter = NumberFormat.getCurrencyInstance();
         return formatter.format(price);
     }
+
+    public String getSeller() { return seller; }
+
+    public void setSeller(String seller) { this.seller = seller; }
 }
