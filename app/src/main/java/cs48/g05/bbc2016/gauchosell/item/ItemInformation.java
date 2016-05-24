@@ -15,7 +15,7 @@ public class ItemInformation {
     private double price;
     private String title;
     private String category;
-   // private String image;
+    //private String image;
     private String description;
     private Bid highestBid;
     private Bid winningBid;

@@ -100,7 +100,6 @@ public class PostItemActivity extends FragmentActivity implements
                 onPostItemClick(v);
             }
         });
-
     }
 
     public void onUploadImageClick(View v) {
@@ -113,6 +112,10 @@ public class PostItemActivity extends FragmentActivity implements
         double price = Double.parseDouble(priceText.getText().toString());
         ItemInformation itemInfo=new ItemInformation(price, itemName, category, itemDescription, itemSeller);
         GauchoSell.user.postItem(itemInfo);
+
+        //Go back to the home page
+        Intent intent = new Intent(this, HomeActivity.class);
+        startActivity(intent);
 
     }
     //show the upload image dialog popup box

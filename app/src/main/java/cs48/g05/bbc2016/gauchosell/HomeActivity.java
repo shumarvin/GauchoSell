@@ -5,11 +5,14 @@ import android.graphics.Typeface;
 import android.media.audiofx.BassBoost;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.firebase.client.DataSnapshot;
@@ -27,76 +30,32 @@ import cs48.g05.bbc2016.gauchosell.util.Constants;
  * Created by laurendumapias on 4/30/16.
  */
 public class HomeActivity extends FeedsActivity {
-    private Firebase firebaseRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ListView list = (ListView) findViewById(R.id.listView);
+        list = (ListView) findViewById(R.id.listView);
 
         //FirebaseListAdapter used to create a feed
         firebaseRef = new Firebase(Constants.FIREBASE_URL + "/" + Constants.FIREBASE_LOCATION_ITEMS);
-        Query queryRef = firebaseRef.orderByChild("priority");
-        FirebaseListAdapter<Item>adapter = new FirebaseListAdapter<Item>(this, Item.class, R.layout.post_layout, queryRef){
+        final Query queryRef = firebaseRef.orderByChild("priority");
+
+        //Initialize the button to filter the categories
+        Button filterButton = (Button) findViewById(R.id.category_button);
+        filterButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            protected void populateView(View v, Item item, int i){
-
-                TextView title=(TextView)v.findViewById(R.id.title);
-                title.setText(item.getItemDescription().getTitle());
-
-                TextView category=(TextView)v.findViewById(R.id.category);
-                category.setText(item.getItemDescription().getCategory());
-
-                TextView description=(TextView)v.findViewById(R.id.description);
-                description.setText(item.getItemDescription().getDescription());
-
-                TextView price=(TextView)v.findViewById(R.id.price);
-                price.setText(item.getItemDescription().priceToString());
-
-                TextView seller=(TextView)v.findViewById(R.id.seller_name);
-                seller.setText(item.getItemDescription().getSeller());
-
-                TextView asking_price=(TextView)v.findViewById(R.id.asking_price);
-                asking_price.setText("Asking Price:");
-
-                TextView highestBidText=(TextView)v.findViewById(R.id.highestBidText);
-                highestBidText.setText("Highest Bid:");
-                //IF there are no bids, display the highest bid as: $0.00
-                if(item.getItemDescription().getHighestBid()==null){
-                    TextView highestBid = (TextView)v.findViewById(R.id.highestBid);
-                    highestBid.setText("$0.00");
+            public void onClick(View v) {
+                if(!(category.equals("No Category"))) {
+                    Query queryRef2 = firebaseRef.orderByChild("itemDescription/category").equalTo(category);
+                    list.setAdapter(initializeFeed(queryRef2));
                 }
                 else {
-                    TextView highestBid = (TextView)v.findViewById(R.id.highestBid);
-                    highestBid.setText(item.getItemDescription().getHighestBid().toString());
+                    list.setAdapter(initializeFeed(queryRef));
                 }
-
-                TextView saleStatus=(TextView)v.findViewById(R.id.saleStatus);
-                saleStatus.setText(item.getSaleStatus());
-
-                //ImageView image=(ImageView)v.findViewById(R.id.image);
-                //image.setImageResource(item.getItemDescription().getImage());
-
             }
-        };
-
-        list.setAdapter(adapter);
-    }
-
-}
-/*firebaseRef.addValueEventListener(new ValueEventListener() {
-@Override
-public void onDataChange(DataSnapshot dataSnapshot) { //Gets called when new posts are made
-        System.out.println("There are " + dataSnapshot.getChildrenCount() + " items");
-        for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
-        Item item = postSnapshot.getValue(Item.class);
-        System.out.println(item.getItemDescription());
-        }
-        }
-
-@Override
-public void onCancelled(FirebaseError firebaseError) {
-        System.out.println("The read failed: " + firebaseError.getMessage());
-        }
         });
-*/
+
+
+        list.setAdapter(initializeFeed(queryRef));
+    }
+}

@@ -36,6 +36,6 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.3.0'
 
     /*Firebase*/
-    compile 'com.firebase:firebase-client-android:2.3.1+'
+    compile 'com.firebase:firebase-client-android:2.5.2+'
     compile 'com.firebaseui:firebase-ui:0.3.1'
 }

@@ -5,26 +5,42 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
+import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.firebase.client.Firebase;
+import com.firebase.client.Query;
+import com.firebase.ui.FirebaseListAdapter;
 
 import cs48.g05.bbc2016.gauchosell.feeds.MyBidsFeed;
+import cs48.g05.bbc2016.gauchosell.item.Item;
 import cs48.g05.bbc2016.gauchosell.util.Constants;
 
 /**
  * Created by icema_000 on 5/13/2016.
  */
 public class FeedsActivity extends BaseActivity {
+    protected Firebase firebaseRef;
+    protected String category="No Category";
+    protected ListView list;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        //Initialize the menu for categories
+        initializeCategoryDropDown();
+
         //set G logo
-        Typeface logoGFont = Typeface.createFromAsset(getAssets(), "The Heart Maze Demo.ttf");
-        TextView logoGTextView = (TextView) findViewById(R.id.g_logo);
+        Typeface logoFont = Typeface.createFromAsset(getAssets(), "The Heart Maze Demo.ttf");
+        TextView logoGTextView = (TextView)findViewById(R.id.g_logo);
+        logoGTextView.setTypeface(logoFont);
+
 
         //intent to home
         ImageButton homeButton = (ImageButton) findViewById(R.id.home_button);
@@ -101,8 +117,68 @@ public class FeedsActivity extends BaseActivity {
         Intent intent = new Intent(getBaseContext(), FollowingActivity.class);
         startActivity(intent);
     }
+    //This populates the list view with items. Creates an adapter that contacts Firebase, populates the listView,
+    //and returns the adapter
+    public FirebaseListAdapter<Item> initializeFeed(Query queryRef){
+        FirebaseListAdapter<Item>adapter = new FirebaseListAdapter<Item>(this, Item.class, R.layout.post_layout, queryRef){
+            @Override
+            protected void populateView(View v, Item item, int i){
+                TextView title=(TextView)v.findViewById(R.id.title);
+                title.setText(item.getItemDescription().getTitle());
 
+                TextView category=(TextView)v.findViewById(R.id.category);
+                category.setText(item.getItemDescription().getCategory());
 
+                TextView description=(TextView)v.findViewById(R.id.description);
+                description.setText(item.getItemDescription().getDescription());
+
+                TextView price=(TextView)v.findViewById(R.id.price);
+                price.setText(item.getItemDescription().priceToString());
+
+                TextView seller=(TextView)v.findViewById(R.id.seller_name);
+                seller.setText(item.getItemDescription().getSeller());
+
+                TextView asking_price=(TextView)v.findViewById(R.id.asking_price);
+                asking_price.setText("Asking Price:");
+
+                TextView highestBidText=(TextView)v.findViewById(R.id.highestBidText);
+                highestBidText.setText("Highest Bid:");
+
+                //IF there are no bids, display the highest bid as: $0.00
+                if(item.getItemDescription().getHighestBid()==null){
+                    TextView highestBid = (TextView)v.findViewById(R.id.highestBid);
+                    highestBid.setText("$0.00");
+                }
+                else {
+                    TextView highestBid = (TextView)v.findViewById(R.id.highestBid);
+                    highestBid.setText(item.getItemDescription().getHighestBid().toString());
+                }
+
+                TextView saleStatus=(TextView)v.findViewById(R.id.saleStatus);
+                saleStatus.setText(item.getSaleStatus());;
+            }
+        };
+        return adapter;
+    }
+    //Initialize drop-down category menu
+    public void initializeCategoryDropDown(){
+        Spinner spinner = (Spinner) findViewById(R.id.spinner_home);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.categories_home, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                //set category to the one the user selected
+                category = (String) parent.getItemAtPosition(position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+    }
 }
 
 

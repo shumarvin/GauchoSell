@@ -64,6 +64,23 @@
         <item>Miscellaneous</item>
     </string-array>
 
+    <!--category choices for postItem -->
+    <string-array name="categories_home">
+        <item>No Category</item>
+        <item>Accessories</item>
+        <item>Books</item>
+        <item>Clothing-Men\'s</item>
+        <item>Clothing-Women\'s</item>
+        <item>Cosmetics</item>
+        <item>Electronics</item>
+        <item>Event Tickets</item>
+        <item>Food</item>
+        <item>Furniture</item>
+        <item>Housing</item>
+        <item>Kitchen Appliances</item>
+        <item>Miscellaneous</item>
+    </string-array>
+
     //names for uploadImage Dialog Box
     <string name="UploadImageDialogTitle">Would you like to take a picture or upload
                                             an existing photo?</string>
