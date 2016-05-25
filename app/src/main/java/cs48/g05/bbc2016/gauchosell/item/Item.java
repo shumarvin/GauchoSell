@@ -58,4 +58,6 @@ public class Item {
 
     public void setTimeCreated(long timeCreated) { this.timeCreated = timeCreated; }
 
+
+    public void addToBidArrayList(Bid bid){ bids.add(bid);}
 }

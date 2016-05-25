@@ -129,15 +129,28 @@
             android:textSize="10dp"
             android:paddingLeft="10dp" />
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/amount"
             android:hint="Bid Amount"
-            android:textSize="12dp"
+            android:textSize="15dp"
             android:editable="false"
-            android:paddingLeft="10dp" />
+            android:textIsSelectable="true" />
 
+        <Button
+            android:layout_width="41dp"
+            android:layout_height="32dp"
+            android:text="+"
+            android:id="@+id/addBid"
+            android:background="#002a0e0e" />
     </LinearLayout>
 
 </LinearLayout>
