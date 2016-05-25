@@ -142,8 +142,7 @@
             android:id="@+id/amount"
             android:hint="Bid Amount"
             android:textSize="15dp"
-            android:editable="false"
-            android:textIsSelectable="true" />
+            android:textIsSelectable="false" />
 
         <Button
             android:layout_width="41dp"

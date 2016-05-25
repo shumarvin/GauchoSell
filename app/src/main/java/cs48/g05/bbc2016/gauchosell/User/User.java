@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+import cs48.g05.bbc2016.gauchosell.GauchoSell;
 import cs48.g05.bbc2016.gauchosell.feeds.FollowingFeed;
 import cs48.g05.bbc2016.gauchosell.feeds.MyBidsFeed;
 import cs48.g05.bbc2016.gauchosell.feeds.MyItemsFeed;
@@ -23,6 +24,8 @@ import cs48.g05.bbc2016.gauchosell.item.ItemInformation;
 /**
  * Created by dav on 4/17/16.
  */
+
+
 public class User {
     private Account myAccount;
     private MyBidsFeed myBids;
@@ -55,7 +58,18 @@ public class User {
 
         return true;
     }
-    public boolean bidItem(Timestamp time, String username, UUID itemID, double amount){
+    public boolean bidItem(Timestamp time, String username, Item item, double amount){
+        Firebase firebaseRef = new Firebase(Constants.FIREBASE_URL + "/" + Constants.FIREBASE_LOCATION_ITEMS + "/" + item.getTimeCreated() + "/bids");
+        HashMap<String, Object> userBidMapping = new HashMap<String, Object>();
+        Bid newBid = new Bid(time, username, amount, item.getItemID());
+        item.addToBidArrayList(newBid);
+        HashMap<String, Object> newBidMap = (HashMap<String, Object>) new ObjectMapper().convertValue(newBid, Map.class);
+        userBidMapping.put(newBid.getUsername(), newBidMap);
+        firebaseRef.setValue(userBidMapping);
+        /*if (amount > item.getItemDescription().getHighestBid().getAmount()) {
+            item.getItemDescription().setHighestBid(newBid);
+        }*/
+
         return true;
     }
     public boolean createAccount(String firstName, String lastName, String username, EmbeddedImage profilePicture, int birthMonth,

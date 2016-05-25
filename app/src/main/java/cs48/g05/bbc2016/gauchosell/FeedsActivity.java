@@ -7,6 +7,8 @@ import android.os.PersistableBundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -16,7 +18,11 @@ import com.firebase.client.Firebase;
 import com.firebase.client.Query;
 import com.firebase.ui.FirebaseListAdapter;
 
-import cs48.g05.bbc2016.gauchosell.feeds.MyBidsFeed;
+import java.sql.Timestamp;
+import java.util.Date;
+
+
+
 import cs48.g05.bbc2016.gauchosell.item.Item;
 import cs48.g05.bbc2016.gauchosell.util.Constants;
 
@@ -117,12 +123,21 @@ public class FeedsActivity extends BaseActivity {
         Intent intent = new Intent(getBaseContext(), FollowingActivity.class);
         startActivity(intent);
     }
+
+    public void onSetBidClicked(View view, Item item, EditText postBid){
+        String postBidItemString = postBid.getText().toString();
+        Date date = new java.util.Date();
+        Timestamp timestamp = new Timestamp(date.getTime());
+        double bidAmountDouble = Double.parseDouble(postBidItemString);
+        GauchoSell.user.bidItem(timestamp, GauchoSell.user.getAccount().getUsername(), item, bidAmountDouble);
+    }
+
     //This populates the list view with items. Creates an adapter that contacts Firebase, populates the listView,
     //and returns the adapter
     public FirebaseListAdapter<Item> initializeFeed(Query queryRef){
         FirebaseListAdapter<Item>adapter = new FirebaseListAdapter<Item>(this, Item.class, R.layout.post_layout, queryRef){
             @Override
-            protected void populateView(View v, Item item, int i){
+            protected void populateView(View v, final Item item, int i){
                 TextView title=(TextView)v.findViewById(R.id.title);
                 title.setText(item.getItemDescription().getTitle());
 
@@ -156,6 +171,15 @@ public class FeedsActivity extends BaseActivity {
 
                 TextView saleStatus=(TextView)v.findViewById(R.id.saleStatus);
                 saleStatus.setText(item.getSaleStatus());;
+
+                final EditText postBidItem = (EditText) v.findViewById(R.id.amount);
+                Button addBidButton = (Button) v.findViewById(R.id.addBid);
+                addBidButton.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View view) {
+                        onSetBidClicked (view, item, postBidItem);
+                    }
+                });
+
             }
         };
         return adapter;
