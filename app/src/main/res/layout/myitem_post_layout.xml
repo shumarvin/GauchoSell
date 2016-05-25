@@ -45,7 +45,8 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Category"
                 android:id="@+id/category"
-                android:textSize="9dp" />
+                android:textSize="9dp"
+                android:textColor="#05506d" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -53,7 +54,8 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="Seller"
                 android:id="@+id/seller_name"
-                android:textSize="9dp" />
+                android:textSize="9dp"
+                android:textColor="#05506d" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -61,7 +63,7 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="Description"
                 android:id="@+id/description"
-                android:textSize="8dp"
+                android:textSize="9dp"
 
                 android:layout_gravity="fill"/>
 

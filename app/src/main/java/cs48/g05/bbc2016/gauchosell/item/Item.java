@@ -19,7 +19,7 @@ public class Item {
     private long priority;
     private long timeCreated;
 
-    public Item(){}
+    public Item(){ bids=new ArrayList<>();}
     public Item(ItemInformation itemDescription) {
         long time = new Date().getTime();
         this.itemDescription = itemDescription;

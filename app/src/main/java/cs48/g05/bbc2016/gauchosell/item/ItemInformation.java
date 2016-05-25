@@ -15,9 +15,8 @@ public class ItemInformation {
     private double price;
     private String title;
     private String category;
-    //private String image;
+   // private String image;
     private String description;
-    private Bid highestBid;
     private Bid winningBid;
     private String seller;
 
@@ -29,7 +28,6 @@ public class ItemInformation {
         this.category = category;
         //this.image = image;
         this.description = description;
-        this.highestBid = null;
         this.winningBid = null;
         this.seller = seller;
     }
@@ -59,17 +57,6 @@ public class ItemInformation {
     public String getDescription() { return description; }
 
     public void setDescription(String description) { this.description = description; }
-
-    public Bid getHighestBid() { return highestBid; }
-
-    public void setHighestBid(Bid highestBid_) {
-        double tempamount=highestBid_.getAmount();
-        Timestamp tempdate=highestBid.getDate();
-        UUID tempId=highestBid_.getItemId();
-        String tempusername=highestBid_.getUsername();
-        Bid tempBid=new Bid(tempdate,tempusername,tempamount,tempId);
-        this.highestBid=tempBid;
-    }
 
     public Bid getWinningBid() { return winningBid; }
 

@@ -159,18 +159,24 @@ public class FeedsActivity extends BaseActivity {
                 TextView highestBidText=(TextView)v.findViewById(R.id.highestBidText);
                 highestBidText.setText("Highest Bid:");
 
-                //IF there are no bids, display the highest bid as: $0.00
-                if(item.getItemDescription().getHighestBid()==null){
+                //If there are no bids, display the highest bid as: $0.00
+                if(item.getBids().size()==0){
                     TextView highestBid = (TextView)v.findViewById(R.id.highestBid);
                     highestBid.setText("$0.00");
                 }
+                //Find the highestBid in the item's list of bids and set the TextView to the amount
                 else {
-                    TextView highestBid = (TextView)v.findViewById(R.id.highestBid);
-                    highestBid.setText(item.getItemDescription().getHighestBid().toString());
+                    for(int j=0; j<item.getBids().size(); j++){
+                        if(item.getBids().get(j).getHighestBid()==true){
+                            TextView highestBid = (TextView)v.findViewById(R.id.highestBid);
+                            highestBid.setText(item.getBids().get(j).amountToString());
+                        }
+                    }
+
                 }
 
                 TextView saleStatus=(TextView)v.findViewById(R.id.saleStatus);
-                saleStatus.setText(item.getSaleStatus());;
+                saleStatus.setText(item.getSaleStatus());
 
                 final EditText postBidItem = (EditText) v.findViewById(R.id.amount);
                 Button addBidButton = (Button) v.findViewById(R.id.addBid);

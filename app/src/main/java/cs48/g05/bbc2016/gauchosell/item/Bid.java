@@ -8,17 +8,19 @@ import java.util.UUID;
  * Created by icema_000 on 4/29/2016.
  */
 public class Bid {
-    //private Timestamp date;
     private Timestamp date;
     private String username;
     private double amount;
     private UUID itemId;
-  
+    private boolean highestBid;
+
+    public Bid(){}
     public Bid(Timestamp date, String username, double amount, UUID itemId){
         this.date=date;
         this.username=username;
         this.amount=amount;
         this.itemId=itemId;
+        this.highestBid=false;
     }
 
     public Timestamp getDate() { return date; }
@@ -36,6 +38,14 @@ public class Bid {
     public UUID getItemId() { return itemId; }
 
     public void setItemId(UUID itemId) { this.itemId = itemId; }
+
+    public boolean getHighestBid() {
+        return highestBid;
+    }
+
+    public void setHighestBid(boolean highestBid) {
+        this.highestBid = highestBid;
+    }
 
     //toString puts the Bid into money form: $9.53
     public String amountToString(){
