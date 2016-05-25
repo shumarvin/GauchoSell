@@ -51,8 +51,6 @@ public class SettingsActivity extends AppCompatActivity {
         email = (EditText) findViewById(R.id.email_edit_field);
         email.setText(GauchoSell.user.getAccount().getEmail());
 
-
-
         Button saveChangesButton = (Button) findViewById(R.id.save_button);
         saveChangesButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,7 +65,8 @@ public class SettingsActivity extends AppCompatActivity {
             return;
         GauchoSell.user.getAccount().setFirstName(firstName.getText().toString());
         GauchoSell.user.getAccount().setLastName((lastName.getText().toString()));
-        //... do the rest //dialogue box for succesfulyl changed Or something like that TODO
+        //GauchoSell.user.getAccount().setUsername((userName.getText().toString()));
+        //dialogue box for succesfulyl changed Or something like that TODO
         Firebase userRef = firebaseRef.child(Constants.FIREBASE_LOCATION_USERS)
                 .child(GauchoSell.user.getAccount().getEmail().replace(".",","));
         userRef.setValue(GauchoSell.user.getAccount());
@@ -85,9 +84,10 @@ public class SettingsActivity extends AppCompatActivity {
             result = false;
         }
 
-//        if (username.getText().toString().equals(""))
-//            username.setError(getString(R.string.empty_field_error));
-
+       /* if (userName.getText().toString().equals("")) {
+            userName.setError(getString(R.string.empty_field_error));
+            result = false;
+        }*/
         return result;
     }
 }

@@ -44,16 +44,14 @@ public class User {
     public Account getAccount() { return myAccount; }
     public boolean postItem(ItemInformation itemDescription){
         //Creates an Item object and  puts it in the database
-        Firebase firebaseRef = new Firebase(Constants.FIREBASE_URL);
+        Firebase firebaseRef = new Firebase(Constants.FIREBASE_URL + "/" +Constants.FIREBASE_LOCATION_ITEMS);
         HashMap<String, Object> userItemMapping = new HashMap<String, Object>();
         Item newItem = new Item(itemDescription);
-
         HashMap<String, Object> newItemMap = (HashMap<String, Object>) new ObjectMapper().convertValue(newItem, Map.class);
 
-        userItemMapping.put("/"+ Constants.FIREBASE_LOCATION_ITEMS + "/" + itemDescription.getTitle(), newItemMap);
-
+        //Time Created identifies the item. It is used so we can differentiate between items (like if they have the same name)
+        userItemMapping.put("" + newItem.getTimeCreated(), newItemMap);
         firebaseRef.updateChildren(userItemMapping);
-        //firebaseRef.child(Constants.FIREBASE_LOCATION_ITEMS).setPriority(-1*newItem.getTimeCreated());
 
         return true;
     }
@@ -65,6 +63,8 @@ public class User {
         return true;
     }
     public boolean deleteItem(Item item){
+        Firebase firebaseRef=new Firebase(Constants.FIREBASE_URL+"/"+Constants.FIREBASE_LOCATION_ITEMS+"/"+item.getTimeCreated());
+        firebaseRef.removeValue();
         return true;
     }
     public boolean repostItem(Item item){
