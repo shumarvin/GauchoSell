@@ -6,6 +6,7 @@ import com.firebase.client.Firebase;
 import com.firebase.client.ServerValue;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -32,9 +33,7 @@ public class User {
     private MyItemsFeed myItems;
     private FollowingFeed following;
 
-
     public User() {}
-
 
     public void loginUser(Account account, MyBidsFeed bids, MyItemsFeed items, FollowingFeed following){ //TODO: may not need this
         this.myAccount = account;
@@ -52,7 +51,7 @@ public class User {
         Item newItem = new Item(itemDescription);
         HashMap<String, Object> newItemMap = (HashMap<String, Object>) new ObjectMapper().convertValue(newItem, Map.class);
 
-        //Time Created identifies the item. It is used so we can differentiate between items (like if they have the same name)
+        //Time Created identifies the item. It is used so we can differentiate between item (like if they have the same name)
         userItemMapping.put("" + newItem.getTimeCreated(), newItemMap);
         firebaseRef.updateChildren(userItemMapping);
 
@@ -60,15 +59,23 @@ public class User {
     }
     public boolean bidItem(Timestamp time, String username, Item item, double amount){
         Firebase firebaseRef = new Firebase(Constants.FIREBASE_URL + "/" + Constants.FIREBASE_LOCATION_ITEMS + "/" + item.getTimeCreated() + "/bids");
-        HashMap<String, Object> userBidMapping = new HashMap<String, Object>();
         Bid newBid = new Bid(time, username, amount, item.getItemID());
-        item.addToBidArrayList(newBid);
-        HashMap<String, Object> newBidMap = (HashMap<String, Object>) new ObjectMapper().convertValue(newBid, Map.class);
-        userBidMapping.put(newBid.getUsername(), newBidMap);
-        firebaseRef.setValue(userBidMapping);
-        /*if (amount > item.getItemDescription().getHighestBid().getAmount()) {
-            item.getItemDescription().setHighestBid(newBid);
-        }*/
+        //Get item's arrayList of bids
+        ArrayList<Bid>bids=item.getBids();
+
+        //If there are no bids, set this bid to the highest
+        if(bids.size()==0){ newBid.setHighestBid(true); }
+        //If the amount is greater than the highestBid, change it.
+        for(int i=0; i<bids.size(); i++){
+            if(bids.get(i).getHighestBid()==true && amount>bids.get(i).getAmount()){
+                bids.get(i).setHighestBid(false);
+                newBid.setHighestBid(true);
+            }
+        }
+
+        //Put the bid into the database
+        bids.add(newBid);
+        firebaseRef.setValue(bids);
 
         return true;
     }
