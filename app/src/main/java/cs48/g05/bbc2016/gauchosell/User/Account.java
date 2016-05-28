@@ -1,5 +1,7 @@
 package cs48.g05.bbc2016.gauchosell.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.util.Date;
 
 import cs48.g05.bbc2016.gauchosell.util.EmbeddedImage;
@@ -7,6 +9,7 @@ import cs48.g05.bbc2016.gauchosell.util.EmbeddedImage;
 /**
  * Created by icema_000 on 4/29/2016.
  */
+@JsonIgnoreProperties({"messages"})
 public class Account {
     private int birthYear;
     private int birthMonth;

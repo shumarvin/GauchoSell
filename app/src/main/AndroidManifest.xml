@@ -3,10 +3,12 @@
     package="cs48.g05.bbc2016.gauchosell">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-feature android:name="android.hardware.camera"
-                    android:required="false"/>
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
 
     <application
         android:name=".GauchoSell"
@@ -30,8 +32,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".login.LoginActivity" />
         </activity>
-        <activity android:name=".PostItemActivity"></activity>
-
+        <activity android:name=".PostItemActivity" />
         <activity android:name=".HomeActivity">
             android:name="GeneralFeedActivity"
             android:label="Login"
@@ -40,10 +41,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".login.LoginActivity" />
         </activity>
-        <activity android:name=".SettingsActivity"></activity>
-        <activity android:name=".MyItemsActivity"></activity>
-        <activity android:name=".MyBidsActivity"></activity>
-        <activity android:name=".FollowingActivity"></activity>
+        <activity android:name=".SettingsActivity" />
+        <activity android:name=".MyItemsActivity" />
+        <activity android:name=".MyBidsActivity" />
+        <activity android:name=".FollowingActivity" />
+        <activity android:name=".MessagesActivity"></activity>
     </application>
 
 </manifest>

@@ -1,6 +1,7 @@
 package cs48.g05.bbc2016.gauchosell;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.PersistableBundle;
@@ -43,9 +44,9 @@ public class FeedsActivity extends BaseActivity {
         initializeCategoryDropDown();
 
         //set G logo
-        Typeface logoFont = Typeface.createFromAsset(getAssets(), "The Heart Maze Demo.ttf");
-        TextView logoGTextView = (TextView)findViewById(R.id.g_logo);
-        logoGTextView.setTypeface(logoFont);
+        //Typeface logoFont = Typeface.createFromAsset(getAssets(), "The Heart Maze Demo.ttf");
+        //TextView logoGTextView = (TextView)findViewById(R.id.g_logo);
+        //logoGTextView.setTypeface(logoFont);
 
 
         //intent to home
@@ -93,6 +94,13 @@ public class FeedsActivity extends BaseActivity {
                 onFollowingClicked(view);
             }
         });
+
+        ImageButton messagesButton = (ImageButton) findViewById(R.id.notificationsButton);
+        messagesButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                onMessagesClicked(view);
+            }
+        });
     }
     public void onHomeClicked(View view) {
         Intent intent = new Intent(getBaseContext(), HomeActivity.class);
@@ -101,6 +109,11 @@ public class FeedsActivity extends BaseActivity {
 
     public void onAddPostClicked (View view) {
         Intent intent = new Intent(getBaseContext(), PostItemActivity.class);
+        startActivity(intent);
+    }
+
+    public void onMessagesClicked (View view) {
+        Intent intent = new Intent(getBaseContext(), MessagesActivity.class);
         startActivity(intent);
     }
 
@@ -126,10 +139,11 @@ public class FeedsActivity extends BaseActivity {
 
     public void onSetBidClicked(View view, Item item, EditText postBid){
         String postBidItemString = postBid.getText().toString();
+        String email=GauchoSell.user.getAccount().getEmail();
         Date date = new java.util.Date();
         Timestamp timestamp = new Timestamp(date.getTime());
         double bidAmountDouble = Double.parseDouble(postBidItemString);
-        GauchoSell.user.bidItem(timestamp, GauchoSell.user.getAccount().getUsername(), item, bidAmountDouble);
+        GauchoSell.user.bidItem(timestamp, GauchoSell.user.getAccount().getUsername(), item, bidAmountDouble, email);
     }
 
     //This populates the list view with items. Creates an adapter that contacts Firebase, populates the listView,
@@ -201,6 +215,7 @@ public class FeedsActivity extends BaseActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 //set category to the one the user selected
+                ((TextView) parent.getChildAt(0)).setTextColor(Color.parseColor("#8e7609"));
                 category = (String) parent.getItemAtPosition(position);
             }
 

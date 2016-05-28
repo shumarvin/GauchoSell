@@ -13,14 +13,16 @@ public class Bid {
     private double amount;
     private UUID itemId;
     private boolean highestBid;
+    private String email;
 
     public Bid(){}
-    public Bid(Timestamp date, String username, double amount, UUID itemId){
+    public Bid(Timestamp date, String username, double amount, UUID itemId, String email){
         this.date=date;
         this.username=username;
         this.amount=amount;
         this.itemId=itemId;
         this.highestBid=false;
+        this.email=email;
     }
 
     public Timestamp getDate() { return date; }
@@ -46,7 +48,13 @@ public class Bid {
     public void setHighestBid(boolean highestBid) {
         this.highestBid = highestBid;
     }
+    public String getEmail() {
+        return email;
+    }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
     //toString puts the Bid into money form: $9.53
     public String amountToString(){
         NumberFormat formatter = NumberFormat.getCurrencyInstance();

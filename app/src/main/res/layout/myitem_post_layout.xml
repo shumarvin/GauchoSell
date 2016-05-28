@@ -45,17 +45,33 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Category"
                 android:id="@+id/category"
-                android:textSize="9dp"
-                android:textColor="#05506d" />
+                android:textSize="10dp"
+                android:textColor="#8e7609" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Seller"
-                android:id="@+id/seller_name"
-                android:textSize="9dp"
-                android:textColor="#05506d" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Seller: "
+                    android:id="@+id/textView8"
+                    android:textSize="10dp"
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="Seller"
+                    android:id="@+id/seller_name"
+                    android:textSize="10dp"
+                    android:textColor="#05506d" />
+
+            </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -63,9 +79,10 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="Description"
                 android:id="@+id/description"
-                android:textSize="9dp"
+                android:textSize="10dp"
 
-                android:layout_gravity="fill"/>
+                android:layout_gravity="fill"
+                android:textColor="#000000" />
 
         </LinearLayout>
 
@@ -126,6 +143,33 @@
             android:textSize="10dp"
             android:paddingLeft="10dp" />
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="5dp">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="31dp"
+            android:text="View Bids"
+            android:id="@+id/view_bid_button"
+            android:layout_gravity="right"
+            android:background="#73d0f4" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Delete Item:"
+            android:id="@+id/textView9"
+            android:textSize="12dp"
+            android:textColor="#000000"
+            android:layout_gravity="center_vertical"
+            android:paddingLeft="6dp" />
+
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -135,7 +179,6 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
-
     </LinearLayout>
 
 </LinearLayout>

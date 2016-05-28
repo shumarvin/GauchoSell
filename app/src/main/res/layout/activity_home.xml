@@ -18,22 +18,21 @@
         android:background="#000033ff"
         android:paddingBottom="5dp">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="48dp"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="@string/g_logo"
-                android:id="@+id/g_logo"
-                android:layout_gravity="center_horizontal"
-                android:textColor="#000000"
-                android:textSize="35sp"
-                android:gravity="left" />
+            <ImageButton
+                android:layout_width="40dp"
+                android:layout_height="50dp"
+                android:id="@+id/notificationsButton"
+                android:src="@drawable/notifications"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"
+                android:background="#00ffffff" />
 
-        </RelativeLayout>
+        </LinearLayout>
 
         <LinearLayout
             android:orientation="vertical"
@@ -56,13 +55,14 @@
                 android:id="@+id/category_button"
                 android:background="#73d0f4"
                 android:layout_gravity="center_horizontal"
-                android:textSize="8dp" />
+                android:textSize="10dp" />
         </LinearLayout>
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="right">
+            android:gravity="right"
+            android:orientation="horizontal">
 
             <ImageButton
                 android:layout_width="40dp"
@@ -72,7 +72,7 @@
                 android:background="#00ffffff"
                 android:scaleType="fitCenter"
                 android:adjustViewBounds="true" />
-        </RelativeLayout>
+        </LinearLayout>
 
 
     </LinearLayout>
