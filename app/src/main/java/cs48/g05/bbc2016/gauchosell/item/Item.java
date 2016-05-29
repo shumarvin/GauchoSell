@@ -10,7 +10,7 @@ import java.util.UUID;
 /**
  * Created by icema_000 on 4/29/2016.
  */
-@JsonIgnoreProperties({"likers"})
+@JsonIgnoreProperties({"likers", "followers"})
 public class Item {
     private ItemInformation itemDescription;
     private String saleStatus;

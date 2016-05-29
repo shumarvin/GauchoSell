@@ -58,6 +58,7 @@ public class User {
         return true;
     }
     public boolean bidItem(Timestamp time, String username, Item item, double amount, String emails){
+        followItem(item, username);
         Firebase firebaseRef = new Firebase(Constants.FIREBASE_URL + "/" + Constants.FIREBASE_LOCATION_ITEMS + "/" + item.getTimeCreated() + "/bids");
         Bid newBid = new Bid(time, username, amount, item.getItemID(), emails);
         //Get item's arrayList of bids
@@ -91,7 +92,7 @@ public class User {
     public boolean repostItem(Item item){
         return true;
     }
-    public boolean followItem(Item item, String username){
+    public boolean likeItem(Item item, String username){
         Firebase firebaseRef=new Firebase(Constants.FIREBASE_URL+"/"+Constants.FIREBASE_LOCATION_ITEMS+"/"+item.getTimeCreated()+"/likers");
         HashMap<String, String> likeMapping = new HashMap<String, String>();
         HashMap<String, Object> newlikeMap = new HashMap<String, Object>();
@@ -99,6 +100,14 @@ public class User {
         newlikeMap.put(username, likeMapping);
         firebaseRef.updateChildren(newlikeMap);
         return true;
+    }
+    public void followItem(Item item, String username){
+        Firebase firebaseRef=new Firebase(Constants.FIREBASE_URL+"/"+Constants.FIREBASE_LOCATION_ITEMS+"/"+item.getTimeCreated()+"/followers");
+        HashMap<String, String> followMapping = new HashMap<String, String>();
+        HashMap<String, Object> newfollowMap = new HashMap<String, Object>();
+        followMapping.put("username", username);
+        newfollowMap.put(username, followMapping);
+        firebaseRef.updateChildren(newfollowMap);
     }
     public void chooseWinningBid(String email, String username, String itemName, double price, String messageDetails){
         String email2 = email.replace(".",",");

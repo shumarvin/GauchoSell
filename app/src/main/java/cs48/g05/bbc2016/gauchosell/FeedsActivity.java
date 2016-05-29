@@ -234,7 +234,7 @@ public class FeedsActivity extends BaseActivity {
         likeButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 likeButton.setBackgroundResource(R.drawable.favorite);
-                GauchoSell.user.followItem(item2, username);
+                GauchoSell.user.likeItem(item2, username);
             }
         });
     }
