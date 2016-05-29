@@ -91,7 +91,13 @@ public class User {
     public boolean repostItem(Item item){
         return true;
     }
-    public boolean followItem(Item item){
+    public boolean followItem(Item item, String username){
+        Firebase firebaseRef=new Firebase(Constants.FIREBASE_URL+"/"+Constants.FIREBASE_LOCATION_ITEMS+"/"+item.getTimeCreated()+"/likers");
+        HashMap<String, String> likeMapping = new HashMap<String, String>();
+        HashMap<String, Object> newlikeMap = new HashMap<String, Object>();
+        likeMapping.put("username", username);
+        newlikeMap.put(username, likeMapping);
+        firebaseRef.updateChildren(newlikeMap);
         return true;
     }
     public void chooseWinningBid(String email, String username, String itemName, double price, String messageDetails){
@@ -113,6 +119,9 @@ public class User {
         firebaseRef.removeValue();
     }
     public boolean unfollowItem(Item item){
+        Firebase firebaseRef=new Firebase(Constants.FIREBASE_URL+"/"+Constants.FIREBASE_LOCATION_ITEMS+"/"+item.getTimeCreated()+"/likers/" +
+                GauchoSell.user.getAccount().getUsername());
+        firebaseRef.removeValue();
         return true;
     }
     public boolean cancelBid(Bid bid){

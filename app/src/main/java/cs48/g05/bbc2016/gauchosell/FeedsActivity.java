@@ -192,6 +192,7 @@ public class FeedsActivity extends BaseActivity {
                 TextView saleStatus=(TextView)v.findViewById(R.id.saleStatus);
                 saleStatus.setText(item.getSaleStatus());
 
+                //Initialize + button to add bid
                 final EditText postBidItem = (EditText) v.findViewById(R.id.amount);
                 Button addBidButton = (Button) v.findViewById(R.id.addBid);
                 addBidButton.setOnClickListener(new View.OnClickListener() {
@@ -199,6 +200,9 @@ public class FeedsActivity extends BaseActivity {
                         onSetBidClicked (view, item, postBidItem);
                     }
                 });
+
+                //Initialize like button to like items
+                likeBehavior(item, v);
 
             }
         };
@@ -215,12 +219,22 @@ public class FeedsActivity extends BaseActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 //set category to the one the user selected
-                ((TextView) parent.getChildAt(0)).setTextColor(Color.parseColor("#8e7609"));
                 category = (String) parent.getItemAtPosition(position);
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+    }
+    public void likeBehavior(Item item, View v){
+        final Item item2=item;
+        final String username=GauchoSell.user.getAccount().getUsername();
+        final ImageButton likeButton = (ImageButton) v.findViewById(R.id.like_button);
+        likeButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                likeButton.setBackgroundResource(R.drawable.favorite);
+                GauchoSell.user.followItem(item2, username);
             }
         });
     }

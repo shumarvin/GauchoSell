@@ -17,8 +17,9 @@ public class MyBidsActivity extends FeedsActivity{
         super.onCreate(savedInstanceState);
         ListView list = (ListView) findViewById(R.id.listView);
 
+
         firebaseRef = new Firebase(Constants.FIREBASE_URL + "/" + Constants.FIREBASE_LOCATION_ITEMS);
-        Query queryRef = firebaseRef.orderByChild("itemDescription/bids").equalTo(GauchoSell.user.getAccount().getUsername());
-        list.setAdapter(initializeFeed(queryRef));
+        Query queryRef = firebaseRef.orderByChild("bids/username").equalTo(GauchoSell.user.getAccount().getUsername());
+        list.setAdapter(initializeFeed(queryRef));;
     }
 }

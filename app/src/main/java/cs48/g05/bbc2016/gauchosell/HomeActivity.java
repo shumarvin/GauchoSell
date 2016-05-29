@@ -39,7 +39,6 @@ public class HomeActivity extends FeedsActivity {
         //FirebaseListAdapter used to create a feed
         firebaseRef = new Firebase(Constants.FIREBASE_URL + "/" + Constants.FIREBASE_LOCATION_ITEMS);
         final Query queryRef = firebaseRef.orderByChild("priority");
-
         //Initialize the button to filter the categories
         Button filterButton = (Button) findViewById(R.id.category_button);
         filterButton.setOnClickListener(new View.OnClickListener() {

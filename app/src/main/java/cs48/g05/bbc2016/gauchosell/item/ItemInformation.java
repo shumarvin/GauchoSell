@@ -19,6 +19,7 @@ public class ItemInformation {
     private String description;
     private Bid winningBid;
     private String seller;
+
     public ItemInformation(){}
 
     public ItemInformation(double price, String title, String category, String description, String seller) {

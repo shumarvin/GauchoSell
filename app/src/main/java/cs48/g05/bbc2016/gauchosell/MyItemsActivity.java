@@ -93,6 +93,8 @@ public class MyItemsActivity extends FeedsActivity{
                     }
                 });
 
+                //When you click the View Bids button, it brings you to a dialog box with the list
+                //of bidders and the amount bid.
                 Button winningBid = (Button) v.findViewById(R.id.view_bid_button);
                 winningBid.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -101,9 +103,9 @@ public class MyItemsActivity extends FeedsActivity{
                         dialog.setTitle("Select Winning Bidder");
                         dialog.setContentView(R.layout.pick_winning_bid);
                         dialog.show();
-
                         final ListView list2=(ListView)dialog.findViewById(R.id.bids_list_view);
                         list2.setAdapter(initializeBidView(item2));
+
                         contactBuyer(list2, item2.getItemDescription().getTitle(), item2.getItemDescription().getPrice());
 
                     }
@@ -135,7 +137,8 @@ public class MyItemsActivity extends FeedsActivity{
         };
         return BidsAdapter;
     }
-
+    //This methods brings up another dialog box when the bidder has been selected. This is where
+    //you can send a message to the bidder detailing your contact information.
     public void contactBuyer(final ListView list, final String itemTitle, final double itemPrice){
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view,

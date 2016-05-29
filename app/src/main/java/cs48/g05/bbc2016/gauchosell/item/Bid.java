@@ -1,5 +1,7 @@
 package cs48.g05.bbc2016.gauchosell.item;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.sql.Timestamp;
 import java.text.NumberFormat;
 import java.util.UUID;
