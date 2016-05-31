@@ -56,5 +56,6 @@ public class HomeActivity extends FeedsActivity {
 
 
         list.setAdapter(initializeFeed(queryRef));
+
     }
 }

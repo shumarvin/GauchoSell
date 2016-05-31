@@ -33,7 +33,7 @@ public class FollowingActivity extends FeedsActivity {
     //Changes the like behavior when initializing the feed. When you press the like button, it removes
     //the item from the likes feed
     @Override
-    public void likeBehavior(Item item, View v){
+    public void likeBehavior(Item item, View v,  ItemViewHolder viewHolder){
         final Item item2=item;
         final String username=GauchoSell.user.getAccount().getUsername();
         final ImageButton likeButton = (ImageButton) v.findViewById(R.id.like_button);

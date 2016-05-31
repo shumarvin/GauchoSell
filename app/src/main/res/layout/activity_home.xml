@@ -83,7 +83,12 @@
         android:id="@+id/listView"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/Logo" />
+        android:layout_below="@+id/Logo"
+        android:smoothScrollbar="true"
+        android:scrollingCache="false"
+        android:animationCache="false"
+        android:fastScrollEnabled="false"
+        android:fastScrollAlwaysVisible="false" />
 
     <LinearLayout
         android:orientation="horizontal"

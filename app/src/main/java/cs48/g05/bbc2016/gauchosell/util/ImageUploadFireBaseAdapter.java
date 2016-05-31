@@ -5,8 +5,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.graphics.drawable.BitmapDrawable;
+import android.media.ExifInterface;
 import android.provider.MediaStore;
 import android.util.Base64;
+import android.util.Log;
 import android.widget.ImageView;
 
 import java.io.ByteArrayOutputStream;
@@ -26,11 +30,10 @@ public class ImageUploadFireBaseAdapter {
     //converts image to base64 string to be stored on Firebase
     //code taken from user skabir from Stack Overflow:
     //http://stackoverflow.com/questions/26292969/can-i-store-image-files-in-firebase-using-java-api
-    public String convertImage(int imageID){
-        Bitmap bmp =  BitmapFactory.decodeResource(context.getResources(),imageID);
+    public String convertImage(ImageView itemImage){
+        Bitmap bmp = ((BitmapDrawable)itemImage.getDrawable()).getBitmap();
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         bmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
-        bmp.recycle();
         byte[] byteArray = stream.toByteArray();
         String imageFile = Base64.encodeToString(byteArray, Base64.DEFAULT);
         return imageFile;

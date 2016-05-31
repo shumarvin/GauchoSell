@@ -110,7 +110,7 @@ public class PostItemActivity extends FragmentActivity implements
         String itemDescription = itemDescriptionText.getText().toString();
         String itemSeller = GauchoSell.user.getAccount().getUsername();
         double price = Double.parseDouble(priceText.getText().toString());
-        ItemInformation itemInfo=new ItemInformation(price, itemName, category, itemDescription, itemSeller);
+        ItemInformation itemInfo=new ItemInformation(price, itemName, category, imageFile, itemDescription, itemSeller);
         GauchoSell.user.postItem(itemInfo);
 
         //Go back to the home page
@@ -164,7 +164,7 @@ public class PostItemActivity extends FragmentActivity implements
                 itemImage.setImageBitmap(BitmapFactory
                         .decodeFile(imgDecodableString));
             }
-            imageFile = uploadImageAdapter.convertImage(R.id.itemPhoto);
+            imageFile = uploadImageAdapter.convertImage(itemImage);
         } else if (resultCode == Activity.RESULT_CANCELED) {
             // User cancelled the image capture
         } else {

@@ -1,16 +1,20 @@
 package cs48.g05.bbc2016.gauchosell;
 
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.media.Image;
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.util.Base64;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -31,6 +35,28 @@ import cs48.g05.bbc2016.gauchosell.util.Constants;
  * Created by icema_000 on 5/13/2016.
  */
 public class FeedsActivity extends BaseActivity {
+
+    static class ItemViewHolder {
+        TextView title;
+        TextView category;
+        TextView description;
+        TextView price;
+
+        TextView seller;
+
+        TextView asking_price;
+
+        TextView highestBidText;
+        TextView highestBid;
+
+        TextView saleStatus;
+
+        ImageView itemImage;
+
+        EditText postBidItem;
+
+        ImageButton likeButton;
+    }
     protected Firebase firebaseRef;
     protected String category="No Category";
     protected ListView list;
@@ -42,12 +68,6 @@ public class FeedsActivity extends BaseActivity {
 
         //Initialize the menu for categories
         initializeCategoryDropDown();
-
-        //set G logo
-        //Typeface logoFont = Typeface.createFromAsset(getAssets(), "The Heart Maze Demo.ttf");
-        //TextView logoGTextView = (TextView)findViewById(R.id.g_logo);
-        //logoGTextView.setTypeface(logoFont);
-
 
         //intent to home
         ImageButton homeButton = (ImageButton) findViewById(R.id.home_button);
@@ -152,58 +172,64 @@ public class FeedsActivity extends BaseActivity {
         FirebaseListAdapter<Item>adapter = new FirebaseListAdapter<Item>(this, Item.class, R.layout.post_layout, queryRef){
             @Override
             protected void populateView(View v, final Item item, int i){
-                TextView title=(TextView)v.findViewById(R.id.title);
-                title.setText(item.getItemDescription().getTitle());
+                ItemViewHolder viewHolder = new ItemViewHolder();
+                viewHolder.title=(TextView)v.findViewById(R.id.title);
+                viewHolder.title.setText(item.getItemDescription().getTitle());
 
-                TextView category=(TextView)v.findViewById(R.id.category);
-                category.setText(item.getItemDescription().getCategory());
+                viewHolder.category=(TextView)v.findViewById(R.id.category);
+                viewHolder.category.setText(item.getItemDescription().getCategory());
 
-                TextView description=(TextView)v.findViewById(R.id.description);
-                description.setText(item.getItemDescription().getDescription());
+                viewHolder.description=(TextView)v.findViewById(R.id.description);
+                viewHolder.description.setText(item.getItemDescription().getDescription());
 
-                TextView price=(TextView)v.findViewById(R.id.price);
-                price.setText(item.getItemDescription().priceToString());
+                viewHolder.price=(TextView)v.findViewById(R.id.price);
+                viewHolder.price.setText(item.getItemDescription().priceToString());
 
-                TextView seller=(TextView)v.findViewById(R.id.seller_name);
-                seller.setText(item.getItemDescription().getSeller());
+                viewHolder.seller=(TextView)v.findViewById(R.id.seller_name);
+                viewHolder.seller.setText(item.getItemDescription().getSeller());
 
-                TextView asking_price=(TextView)v.findViewById(R.id.asking_price);
-                asking_price.setText("Asking Price:");
+                viewHolder.asking_price=(TextView)v.findViewById(R.id.asking_price);
+                viewHolder.asking_price.setText("Asking Price:");
 
-                TextView highestBidText=(TextView)v.findViewById(R.id.highestBidText);
-                highestBidText.setText("Highest Bid:");
+                viewHolder.highestBidText=(TextView)v.findViewById(R.id.highestBidText);
+                viewHolder.highestBidText.setText("Highest Bid:");
 
                 //If there are no bids, display the highest bid as: $0.00
                 if(item.getBids().size()==0){
-                    TextView highestBid = (TextView)v.findViewById(R.id.highestBid);
-                    highestBid.setText("$0.00");
+                    viewHolder.highestBid = (TextView)v.findViewById(R.id.highestBid);
+                    viewHolder.highestBid.setText("$0.00");
                 }
                 //Find the highestBid in the item's list of bids and set the TextView to the amount
                 else {
                     for(int j=0; j<item.getBids().size(); j++){
                         if(item.getBids().get(j).getHighestBid()==true){
-                            TextView highestBid = (TextView)v.findViewById(R.id.highestBid);
-                            highestBid.setText(item.getBids().get(j).amountToString());
+                            viewHolder.highestBid = (TextView)v.findViewById(R.id.highestBid);
+                            viewHolder.highestBid.setText(item.getBids().get(j).amountToString());
                         }
                     }
 
                 }
 
-                TextView saleStatus=(TextView)v.findViewById(R.id.saleStatus);
-                saleStatus.setText(item.getSaleStatus());
+                viewHolder.saleStatus=(TextView)v.findViewById(R.id.saleStatus);
+                viewHolder.saleStatus.setText(item.getSaleStatus());
+
+                viewHolder.itemImage=(ImageView)v.findViewById(R.id.image);
+                byte[] imageAsBytes=Base64.decode(item.getItemDescription().getImage().getBytes(), Base64.DEFAULT);
+                viewHolder.itemImage.setImageBitmap(BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length));
 
                 //Initialize + button to add bid
-                final EditText postBidItem = (EditText) v.findViewById(R.id.amount);
+                viewHolder.postBidItem = (EditText) v.findViewById(R.id.amount);
+                final EditText postBidItem1=viewHolder.postBidItem;
                 Button addBidButton = (Button) v.findViewById(R.id.addBid);
                 addBidButton.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View view) {
-                        onSetBidClicked (view, item, postBidItem);
+                        onSetBidClicked (view, item, postBidItem1);
                     }
                 });
 
                 //Initialize like button to like items
-                likeBehavior(item, v);
-
+                likeBehavior(item, v, viewHolder);
+                v.setTag(viewHolder);
             }
         };
         return adapter;
@@ -227,13 +253,14 @@ public class FeedsActivity extends BaseActivity {
             }
         });
     }
-    public void likeBehavior(Item item, View v){
+    public void likeBehavior(Item item, View v, ItemViewHolder viewHolder){
         final Item item2=item;
         final String username=GauchoSell.user.getAccount().getUsername();
-        final ImageButton likeButton = (ImageButton) v.findViewById(R.id.like_button);
-        likeButton.setOnClickListener(new View.OnClickListener() {
+        viewHolder.likeButton = (ImageButton) v.findViewById(R.id.like_button);
+        final ImageButton likeButton1=viewHolder.likeButton;
+        viewHolder.likeButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                likeButton.setBackgroundResource(R.drawable.favorite);
+                likeButton1.setBackgroundResource(R.drawable.favorite);
                 GauchoSell.user.likeItem(item2, username);
             }
         });

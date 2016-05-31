@@ -48,6 +48,10 @@ public class MyItemsActivity extends FeedsActivity{
         FirebaseListAdapter<Item>adapter = new FirebaseListAdapter<Item>(this, Item.class, R.layout.myitem_post_layout, queryRef){
             @Override
             protected void populateView(View v, Item item, int i) {
+                ImageView itemImage=(ImageView)v.findViewById(R.id.image);
+                byte[] imageAsBytes= Base64.decode(item.getItemDescription().getImage().getBytes(), Base64.DEFAULT);
+                itemImage.setImageBitmap(BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length));
+
 
                 TextView title = (TextView) v.findViewById(R.id.title);
                 title.setText(item.getItemDescription().getTitle());
@@ -87,11 +91,6 @@ public class MyItemsActivity extends FeedsActivity{
 
                 TextView saleStatus = (TextView) v.findViewById(R.id.saleStatus);
                 saleStatus.setText(item.getSaleStatus());
-                
-
-                ImageView itemImage=(ImageView)v.findViewById(R.id.image);
-                byte[] imageAsBytes= Base64.decode(item.getItemDescription().getImage().getBytes(), Base64.DEFAULT);
-                itemImage.setImageBitmap(BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length));
 
                 final Item item2 = item;
                 ImageButton deleteItem = (ImageButton) v.findViewById(R.id.delete_post);
