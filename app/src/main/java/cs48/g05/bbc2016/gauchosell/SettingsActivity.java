@@ -1,5 +1,6 @@
 package cs48.g05.bbc2016.gauchosell;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.media.Image;
@@ -14,6 +15,7 @@ import android.view.View;
 
 import com.firebase.client.Firebase;
 
+import cs48.g05.bbc2016.gauchosell.login.LoginActivity;
 import cs48.g05.bbc2016.gauchosell.util.Constants;
 
 //import com.firebase.client.core.view.View;
@@ -58,6 +60,21 @@ public class SettingsActivity extends AppCompatActivity {
                 onSaveChangesClick(v);
             }
         });
+
+       Button logoutButton = (Button) findViewById(R.id.logout_button);
+        logoutButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                onLogoutClick(v);
+            }
+        });
+
+
+    }
+
+    public void onLogoutClick(View view){
+        Intent intent = new Intent(SettingsActivity.this, LoginActivity.class);
+        startActivity(intent);
     }
 
     public void onSaveChangesClick(View view){
