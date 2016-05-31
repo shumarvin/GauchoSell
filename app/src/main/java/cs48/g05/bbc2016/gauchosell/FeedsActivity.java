@@ -210,8 +210,8 @@ public class FeedsActivity extends BaseActivity {
 
                 }
 
-                viewHolder.saleStatus=(TextView)v.findViewById(R.id.saleStatus);
-                viewHolder.saleStatus.setText(item.getSaleStatus());
+                /*viewHolder.saleStatus=(TextView)v.findViewById(R.id.saleStatus);
+                viewHolder.saleStatus.setText(item.getSaleStatus());*/
 
                 viewHolder.itemImage=(ImageView)v.findViewById(R.id.image);
                 byte[] imageAsBytes=Base64.decode(item.getItemDescription().getImage().getBytes(), Base64.DEFAULT);
