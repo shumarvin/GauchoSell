@@ -13,7 +13,7 @@ import java.util.UUID;
 @JsonIgnoreProperties({"likers", "followers"})
 public class Item {
     private ItemInformation itemDescription;
-    private String saleStatus;
+    //private String saleStatus;
     private UUID itemID;
     private ArrayList<Bid> bids;
     private long priority;
@@ -23,7 +23,7 @@ public class Item {
     public Item(ItemInformation itemDescription) {
         long time = new Date().getTime();
         this.itemDescription = itemDescription;
-        this.saleStatus = "Not Sold";
+        //this.saleStatus = "Not Sold";
         this.itemID = UUID.randomUUID();
         this.bids = new ArrayList<Bid>();
         this.priority= (-1)*(time); //because of how firebase ordering query works, we need to do this
@@ -34,13 +34,13 @@ public class Item {
 
     public void setItemDescription(ItemInformation itemDescription) { this.itemDescription = itemDescription; }
 
-    public String getSaleStatus() {
+    /*public String getSaleStatus() {
         return saleStatus;
     }
 
     public void setSaleStatus(String saleStatus) {
         this.saleStatus = saleStatus;
-    }
+    }*/
 
     public UUID getItemID() { return itemID; }
 

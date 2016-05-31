@@ -15,8 +15,8 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:layout_width="110dp"
-                android:layout_height="100dp"
+                android:layout_width="133dp"
+                android:layout_height="133dp"
                 android:id="@+id/image"
                 android:src="@drawable/noimage"
                 android:layout_gravity="center" />
@@ -26,7 +26,8 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:weightSum="1">
+            android:weightSum="1"
+            android:paddingLeft="5dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -97,7 +98,8 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingTop="5dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -139,15 +141,6 @@
             android:textSize="10dp"
             android:paddingLeft="1dp"
             android:textColor="#05506d" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Sale Status"
-            android:id="@+id/saleStatus"
-            android:textSize="10dp"
-            android:paddingLeft="10dp" />
 
     </LinearLayout>
 

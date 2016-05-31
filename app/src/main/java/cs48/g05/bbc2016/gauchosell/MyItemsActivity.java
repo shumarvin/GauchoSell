@@ -89,8 +89,8 @@ public class MyItemsActivity extends FeedsActivity{
                     }
                 }
 
-                TextView saleStatus = (TextView) v.findViewById(R.id.saleStatus);
-                saleStatus.setText(item.getSaleStatus());
+                /*TextView saleStatus = (TextView) v.findViewById(R.id.saleStatus);
+                saleStatus.setText(item.getSaleStatus());*/
 
                 final Item item2 = item;
                 ImageButton deleteItem = (ImageButton) v.findViewById(R.id.delete_post);
