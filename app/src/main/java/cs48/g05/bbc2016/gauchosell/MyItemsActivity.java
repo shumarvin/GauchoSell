@@ -2,7 +2,9 @@ package cs48.g05.bbc2016.gauchosell;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -84,6 +87,11 @@ public class MyItemsActivity extends FeedsActivity{
 
                 TextView saleStatus = (TextView) v.findViewById(R.id.saleStatus);
                 saleStatus.setText(item.getSaleStatus());
+                
+
+                ImageView itemImage=(ImageView)v.findViewById(R.id.image);
+                byte[] imageAsBytes= Base64.decode(item.getItemDescription().getImage().getBytes(), Base64.DEFAULT);
+                itemImage.setImageBitmap(BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length));
 
                 final Item item2 = item;
                 ImageButton deleteItem = (ImageButton) v.findViewById(R.id.delete_post);
