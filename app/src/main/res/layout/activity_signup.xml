@@ -157,26 +157,7 @@
             android:layout_marginBottom="24dp"
             android:id="@+id/SignUpButton" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/or_signup"
-            android:id="@+id/orText"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="0.45" />
 
-        <Button
-            android:layout_weight=".75"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:alpha=".50"
-            android:textColor="@color/greyButtonText"
-            android:text="@string/facebook_signup_button"
-            android:layout_marginTop="24dp"
-            android:layout_marginBottom="24dp"
-            android:id="@+id/SignUpWithFacebookButton" />
 
 
     </LinearLayout>
