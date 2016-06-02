@@ -2,11 +2,7 @@ package cs48.g05.bbc2016.gauchosell;
 
 import android.content.Intent;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
-import android.graphics.Typeface;
-import android.media.Image;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.util.Base64;
 import android.view.View;
 import android.widget.AdapterView;
@@ -26,10 +22,7 @@ import com.firebase.ui.FirebaseListAdapter;
 import java.sql.Timestamp;
 import java.util.Date;
 
-
-
 import cs48.g05.bbc2016.gauchosell.item.Item;
-import cs48.g05.bbc2016.gauchosell.util.Constants;
 
 /**
  * Created by icema_000 on 5/13/2016.
@@ -209,9 +202,6 @@ public class FeedsActivity extends BaseActivity {
                     }
 
                 }
-
-                /*viewHolder.saleStatus=(TextView)v.findViewById(R.id.saleStatus);
-                viewHolder.saleStatus.setText(item.getSaleStatus());*/
 
                 viewHolder.itemImage=(ImageView)v.findViewById(R.id.image);
                 byte[] imageAsBytes=Base64.decode(item.getItemDescription().getImage().getBytes(), Base64.DEFAULT);

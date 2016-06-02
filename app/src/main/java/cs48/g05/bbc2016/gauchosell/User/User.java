@@ -1,14 +1,10 @@
 package cs48.g05.bbc2016.gauchosell.user;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.firebase.client.Firebase;
-import com.firebase.client.ServerValue;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -18,11 +14,10 @@ import cs48.g05.bbc2016.gauchosell.feeds.FollowingFeed;
 import cs48.g05.bbc2016.gauchosell.feeds.MyBidsFeed;
 import cs48.g05.bbc2016.gauchosell.feeds.MyItemsFeed;
 import cs48.g05.bbc2016.gauchosell.item.Bid;
-import cs48.g05.bbc2016.gauchosell.item.Message;
-import cs48.g05.bbc2016.gauchosell.util.Constants;
-import cs48.g05.bbc2016.gauchosell.util.EmbeddedImage;
 import cs48.g05.bbc2016.gauchosell.item.Item;
 import cs48.g05.bbc2016.gauchosell.item.ItemInformation;
+import cs48.g05.bbc2016.gauchosell.item.Message;
+import cs48.g05.bbc2016.gauchosell.util.Constants;
 
 /**
  * Created by dav on 4/17/16.
@@ -80,7 +75,7 @@ public class User {
 
         return true;
     }
-    public boolean createAccount(String firstName, String lastName, String username, EmbeddedImage profilePicture, int birthMonth,
+    public boolean createAccount(String firstName, String lastName, String username,int birthMonth,
                                  int birthYear, char[]password, String email){
         return true;
     }
@@ -139,7 +134,7 @@ public class User {
     public boolean deleteAccount(){
         return true;
     }
-    public boolean updateAccountInfo(String firstName, String lastName, String username, EmbeddedImage profilePicture, int birthMonth,
+    public boolean updateAccountInfo(String firstName, String lastName, String username, int birthMonth,
                                      int birthYear, char[]password, String email){return true;}
     public boolean updateItemInfo(ItemInformation itemDescription, String saleStatus, UUID itemID, Bid[]bids){return true;}
 

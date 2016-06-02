@@ -22,7 +22,6 @@ import com.firebase.client.Query;
 import com.firebase.ui.FirebaseListAdapter;
 
 import java.util.ArrayList;
-import java.util.UUID;
 
 import cs48.g05.bbc2016.gauchosell.item.Bid;
 import cs48.g05.bbc2016.gauchosell.item.Item;

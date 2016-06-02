@@ -1,20 +1,14 @@
 package cs48.g05.bbc2016.gauchosell;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.DialogFragment;
-import android.app.Fragment;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.app.FragmentActivity;
-import android.util.Base64;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -22,20 +16,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.firebase.client.Firebase;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-import cs48.g05.bbc2016.gauchosell.item.Bid;
 import cs48.g05.bbc2016.gauchosell.item.ItemInformation;
 import cs48.g05.bbc2016.gauchosell.util.Constants;
-import cs48.g05.bbc2016.gauchosell.util.EmbeddedImage;
 import cs48.g05.bbc2016.gauchosell.util.ImageUploadFireBaseAdapter;
 
 public class PostItemActivity extends FragmentActivity implements

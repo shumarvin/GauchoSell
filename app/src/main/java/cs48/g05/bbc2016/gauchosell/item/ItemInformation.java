@@ -1,12 +1,6 @@
 package cs48.g05.bbc2016.gauchosell.item;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-import java.sql.Timestamp;
 import java.text.NumberFormat;
-import java.util.UUID;
-
-import cs48.g05.bbc2016.gauchosell.util.EmbeddedImage;
 
 /**
  * Created by icema_000 on 4/29/2016.

@@ -11,24 +11,18 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.firebase.client.AuthData;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
-import com.firebase.client.Query;
 import com.firebase.client.ValueEventListener;
 
 import cs48.g05.bbc2016.gauchosell.BaseActivity;
 import cs48.g05.bbc2016.gauchosell.GauchoSell;
-import cs48.g05.bbc2016.gauchosell.feeds.FollowingFeed;
-import cs48.g05.bbc2016.gauchosell.feeds.MyBidsFeed;
-import cs48.g05.bbc2016.gauchosell.feeds.MyItemsFeed;
-import cs48.g05.bbc2016.gauchosell.user.Account;
-import cs48.g05.bbc2016.gauchosell.user.User;
-import cs48.g05.bbc2016.gauchosell.util.Constants;
 import cs48.g05.bbc2016.gauchosell.HomeActivity;
 import cs48.g05.bbc2016.gauchosell.R;
+import cs48.g05.bbc2016.gauchosell.user.Account;
+import cs48.g05.bbc2016.gauchosell.util.Constants;
 
 /**
  * Created by dav on 4/17/16.
