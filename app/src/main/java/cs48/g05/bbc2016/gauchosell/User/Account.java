@@ -2,13 +2,10 @@ package cs48.g05.bbc2016.gauchosell.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import java.util.Date;
-
-import cs48.g05.bbc2016.gauchosell.util.EmbeddedImage;
-
 /**
  * Created by icema_000 on 4/29/2016.
  */
+//Need this so firebase stops being mad at us
 @JsonIgnoreProperties({"messages"})
 public class Account {
     private int birthYear;
@@ -17,7 +14,6 @@ public class Account {
     private String lastName;
     private String username;
     private String email;
-    //private EmbeddedImage image;
     private long timeJoined;
 
     //http://stackoverflow.com/questions/7625783/jsonmappingexception-no-suitable-constructor-found-for-type-simple-type-class
@@ -58,10 +54,6 @@ public class Account {
     public String getEmail() { return email; }
 
     public void setEmail(String email) { this.email = email; }
-
-//    public EmbeddedImage getImage() { return image; }
-//
-//    public void setImage(EmbeddedImage image) { this.image = image; }
 
     public long getTimeJoined() { return timeJoined; }
 
