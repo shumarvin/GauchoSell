@@ -81,7 +81,6 @@ public class SettingsActivity extends AppCompatActivity {
         GauchoSell.user.getAccount().setFirstName(firstName.getText().toString());
         GauchoSell.user.getAccount().setLastName((lastName.getText().toString()));
         //GauchoSell.user.getAccount().setUsername((userName.getText().toString()));
-        //dialogue box for succesfulyl changed Or something like that TODO
         Firebase userRef = firebaseRef.child(Constants.FIREBASE_LOCATION_USERS)
                 .child(GauchoSell.user.getAccount().getEmail().replace(".",","));
         userRef.setValue(GauchoSell.user.getAccount());
@@ -99,10 +98,10 @@ public class SettingsActivity extends AppCompatActivity {
             result = false;
         }
 
-       /* if (userName.getText().toString().equals("")) {
+        if (userName.getText().toString().equals("")) {
             userName.setError(getString(R.string.empty_field_error));
             result = false;
-        }*/
+        }
         return result;
     }
 }
