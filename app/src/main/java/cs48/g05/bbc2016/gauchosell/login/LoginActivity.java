@@ -90,6 +90,7 @@ public class LoginActivity extends BaseActivity {
                 //get info on user, and change to home screen
                 buildAccount();
                 clearForm();
+                //GauchoSell.user.loginUser(userAccount, bids, items, following);
                 Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                 startActivity(intent);
             }
