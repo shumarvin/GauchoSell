@@ -1,4 +1,4 @@
-package cs48.g05.bbc2016.gauchosell;
+package cs48.g05.bbc2016.gauchosell.activities;
 
 import android.content.Intent;
 import android.graphics.BitmapFactory;
@@ -22,7 +22,9 @@ import com.firebase.ui.FirebaseListAdapter;
 import java.sql.Timestamp;
 import java.util.Date;
 
+import cs48.g05.bbc2016.gauchosell.R;
 import cs48.g05.bbc2016.gauchosell.item.Item;
+import cs48.g05.bbc2016.gauchosell.util.GauchoSell;
 
 /**
  * Created by icema_000 on 5/13/2016.
@@ -152,7 +154,7 @@ public class FeedsActivity extends BaseActivity {
 
     public void onSetBidClicked(View view, Item item, EditText postBid){
         String postBidItemString = postBid.getText().toString();
-        String email=GauchoSell.user.getAccount().getEmail();
+        String email= GauchoSell.user.getAccount().getEmail();
         Date date = new java.util.Date();
         Timestamp timestamp = new Timestamp(date.getTime());
         double bidAmountDouble = Double.parseDouble(postBidItemString);
