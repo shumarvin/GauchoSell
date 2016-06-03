@@ -171,7 +171,6 @@ public class CreateAccountActivity extends BaseActivity {
             }
         });
     }
-    //TODO: send verification email to make sure email is valid
 
     private boolean isValidEmail(String email){
         boolean isValidEmail = (email != null &&

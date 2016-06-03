@@ -48,9 +48,6 @@ public class SettingsActivity extends AppCompatActivity {
         userName = (EditText) findViewById(R.id.username_edit_field);
         userName.setText(GauchoSell.user.getAccount().getUsername());
 
-        email = (EditText) findViewById(R.id.email_edit_field);
-        email.setText(GauchoSell.user.getAccount().getEmail());
-
         Button saveChangesButton = (Button) findViewById(R.id.save_button);
         saveChangesButton.setOnClickListener(new View.OnClickListener() {
             @Override
