@@ -25,21 +25,15 @@ import cs48.g05.bbc2016.gauchosell.util.Constants;
 
 public class User {
     private Account myAccount;
-    private MyBidsFeed myBids;
-    private MyItemsFeed myItems;
-    private FollowingFeed following;
     public User() {}
 
-    public void loginUser(Account account, MyBidsFeed bids, MyItemsFeed items, FollowingFeed following){ //TODO: may not need this
+    public void loginUser(Account account){
         this.myAccount = account;
-        this.myBids = bids;
-        this.myItems = items;
-        this.following = following;
     }
 
     public void setAccount(Account myAccount) { this.myAccount = myAccount; }
     public Account getAccount() { return myAccount; }
-    public boolean postItem(ItemInformation itemDescription){
+    public void postItem(ItemInformation itemDescription){
         //Creates an Item object and  puts it in the database
         Firebase firebaseRef = new Firebase(Constants.FIREBASE_URL + "/" +Constants.FIREBASE_LOCATION_ITEMS);
         HashMap<String, Object> userItemMapping = new HashMap<String, Object>();
@@ -49,10 +43,8 @@ public class User {
         //Time Created identifies the item. It is used so we can differentiate between item (like if they have the same name)
         userItemMapping.put("" + newItem.getTimeCreated(), newItemMap);
         firebaseRef.updateChildren(userItemMapping);
-
-        return true;
     }
-    public boolean bidItem(Timestamp time, String username, Item item, double amount, String emails){
+    public void bidItem(Timestamp time, String username, Item item, double amount, String emails){
         followItem(item, username);
         Firebase firebaseRef = new Firebase(Constants.FIREBASE_URL + "/" + Constants.FIREBASE_LOCATION_ITEMS + "/" + item.getTimeCreated() + "/bids");
         Bid newBid = new Bid(time, username, amount, item.getItemID(), emails);
@@ -72,29 +64,18 @@ public class User {
         //Put the bid into the database
         bids.add(newBid);
         firebaseRef.setValue(bids);
-
-        return true;
     }
-    public boolean createAccount(String firstName, String lastName, String username,int birthMonth,
-                                 int birthYear, char[]password, String email){
-        return true;
-    }
-    public boolean deleteItem(Item item){
+    public void deleteItem(Item item){
         Firebase firebaseRef=new Firebase(Constants.FIREBASE_URL+"/"+Constants.FIREBASE_LOCATION_ITEMS+"/"+item.getTimeCreated());
         firebaseRef.removeValue();
-        return true;
     }
-    public boolean repostItem(Item item){
-        return true;
-    }
-    public boolean likeItem(Item item, String username){
+    public void likeItem(Item item, String username){
         Firebase firebaseRef=new Firebase(Constants.FIREBASE_URL+"/"+Constants.FIREBASE_LOCATION_ITEMS+"/"+item.getTimeCreated()+"/likers");
         HashMap<String, String> likeMapping = new HashMap<String, String>();
         HashMap<String, Object> newlikeMap = new HashMap<String, Object>();
         likeMapping.put("username", username);
         newlikeMap.put(username, likeMapping);
         firebaseRef.updateChildren(newlikeMap);
-        return true;
     }
     public void followItem(Item item, String username){
         Firebase firebaseRef=new Firebase(Constants.FIREBASE_URL+"/"+Constants.FIREBASE_LOCATION_ITEMS+"/"+item.getTimeCreated()+"/followers");
@@ -114,28 +95,15 @@ public class User {
         //Time Created identifies the item. It is used so we can differentiate between item (like if they have the same name)
         userMessageMapping.put("" + message.getPriority(), newMessageMap);
         firebaseRef.updateChildren(userMessageMapping);
-
-        //firebaseRef.push().setValue(message);
     }
     public void deleteMessage(Message message){
         String email = GauchoSell.user.getAccount().getEmail().replace(".",",");
         Firebase firebaseRef=new Firebase(Constants.FIREBASE_URL+"/users/"+email+"/messages/"+message.getPriority());
         firebaseRef.removeValue();
     }
-    public boolean unfollowItem(Item item){
+    public void unfollowItem(Item item){
         Firebase firebaseRef=new Firebase(Constants.FIREBASE_URL+"/"+Constants.FIREBASE_LOCATION_ITEMS+"/"+item.getTimeCreated()+"/likers/" +
                 GauchoSell.user.getAccount().getUsername());
         firebaseRef.removeValue();
-        return true;
     }
-    public boolean cancelBid(Bid bid){
-        return true;
-    }
-    public boolean deleteAccount(){
-        return true;
-    }
-    public boolean updateAccountInfo(String firstName, String lastName, String username, int birthMonth,
-                                     int birthYear, char[]password, String email){return true;}
-    public boolean updateItemInfo(ItemInformation itemDescription, String saleStatus, UUID itemID, Bid[]bids){return true;}
-
 }
