@@ -11,7 +11,6 @@ public class ItemInformation {
     private String category;
     private String image;
     private String description;
-    private Bid winningBid;
     private String seller;
 
     public ItemInformation(){}
@@ -22,7 +21,6 @@ public class ItemInformation {
         this.category = category;
         this.image = image;
         this.description = description;
-        this.winningBid = null;
         this.seller = seller;
     }
 
@@ -59,10 +57,6 @@ public class ItemInformation {
     public String getDescription() { return description; }
 
     public void setDescription(String description) { this.description = description; }
-
-    public Bid getWinningBid() { return winningBid; }
-
-    public void setWinningBid(Bid winningBid) { this.winningBid = winningBid; }
 
     //toString puts the Bid into money form: $9.53
     public String priceToString() {

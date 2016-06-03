@@ -20,7 +20,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import cs48.g05.bbc2016.gauchosell.BaseActivity;
+import cs48.g05.bbc2016.gauchosell.activities.BaseActivity;
 import cs48.g05.bbc2016.gauchosell.R;
 import cs48.g05.bbc2016.gauchosell.user.Account;
 import cs48.g05.bbc2016.gauchosell.util.Constants;

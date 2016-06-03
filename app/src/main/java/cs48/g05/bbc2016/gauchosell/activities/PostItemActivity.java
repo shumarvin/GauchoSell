@@ -1,4 +1,4 @@
-package cs48.g05.bbc2016.gauchosell;
+package cs48.g05.bbc2016.gauchosell.activities;
 
 import android.app.Activity;
 import android.app.DialogFragment;
@@ -19,12 +19,15 @@ import android.widget.Spinner;
 
 import com.firebase.client.Firebase;
 
+import cs48.g05.bbc2016.gauchosell.R;
+import cs48.g05.bbc2016.gauchosell.UploadImageDialogFragment;
 import cs48.g05.bbc2016.gauchosell.item.ItemInformation;
 import cs48.g05.bbc2016.gauchosell.util.Constants;
+import cs48.g05.bbc2016.gauchosell.util.GauchoSell;
 import cs48.g05.bbc2016.gauchosell.util.ImageUploadFireBaseAdapter;
 
 public class PostItemActivity extends FragmentActivity implements
-                                                UploadImageDialogFragment.UploadImageListener {
+        UploadImageDialogFragment.UploadImageListener {
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
     public static final int MEDIA_TYPE_IMAGE = 1;
 

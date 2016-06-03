@@ -7,12 +7,8 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
-import cs48.g05.bbc2016.gauchosell.GauchoSell;
-import cs48.g05.bbc2016.gauchosell.feeds.FollowingFeed;
-import cs48.g05.bbc2016.gauchosell.feeds.MyBidsFeed;
-import cs48.g05.bbc2016.gauchosell.feeds.MyItemsFeed;
+import cs48.g05.bbc2016.gauchosell.util.GauchoSell;
 import cs48.g05.bbc2016.gauchosell.item.Bid;
 import cs48.g05.bbc2016.gauchosell.item.Item;
 import cs48.g05.bbc2016.gauchosell.item.ItemInformation;
@@ -47,7 +43,7 @@ public class User {
     public void bidItem(Timestamp time, String username, Item item, double amount, String emails){
         followItem(item, username);
         Firebase firebaseRef = new Firebase(Constants.FIREBASE_URL + "/" + Constants.FIREBASE_LOCATION_ITEMS + "/" + item.getTimeCreated() + "/bids");
-        Bid newBid = new Bid(time, username, amount, item.getItemID(), emails);
+        Bid newBid = new Bid(time, username, amount, emails);
         //Get item's arrayList of bids
         ArrayList<Bid>bids=item.getBids();
 

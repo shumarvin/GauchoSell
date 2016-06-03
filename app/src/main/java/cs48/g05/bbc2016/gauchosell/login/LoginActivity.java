@@ -17,9 +17,9 @@ import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
 
-import cs48.g05.bbc2016.gauchosell.BaseActivity;
-import cs48.g05.bbc2016.gauchosell.GauchoSell;
-import cs48.g05.bbc2016.gauchosell.HomeActivity;
+import cs48.g05.bbc2016.gauchosell.activities.BaseActivity;
+import cs48.g05.bbc2016.gauchosell.util.GauchoSell;
+import cs48.g05.bbc2016.gauchosell.activities.HomeActivity;
 import cs48.g05.bbc2016.gauchosell.R;
 import cs48.g05.bbc2016.gauchosell.user.Account;
 import cs48.g05.bbc2016.gauchosell.util.Constants;
@@ -81,7 +81,6 @@ public class LoginActivity extends BaseActivity {
     }
 
     private void authUser() {
-        //firebaseRef.authWithPassword(emailInput.toString(), passwordInput.toString(), new Firebase.AuthResultHandler() {
         firebaseRef.authWithPassword(emailInput.getText().toString(),passwordInput.getText().toString(), new Firebase.AuthResultHandler() {
             @Override
             public void onAuthenticated(AuthData authData) {

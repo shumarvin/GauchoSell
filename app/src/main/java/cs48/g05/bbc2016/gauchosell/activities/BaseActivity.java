@@ -1,4 +1,4 @@
-package cs48.g05.bbc2016.gauchosell;
+package cs48.g05.bbc2016.gauchosell.activities;
 
 import android.os.Bundle;
 import android.os.PersistableBundle;

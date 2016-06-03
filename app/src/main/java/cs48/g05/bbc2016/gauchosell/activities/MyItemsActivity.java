@@ -1,7 +1,6 @@
-package cs48.g05.bbc2016.gauchosell;
+package cs48.g05.bbc2016.gauchosell.activities;
 
 import android.app.Dialog;
-import android.content.Context;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Base64;
@@ -23,9 +22,11 @@ import com.firebase.ui.FirebaseListAdapter;
 
 import java.util.ArrayList;
 
+import cs48.g05.bbc2016.gauchosell.R;
 import cs48.g05.bbc2016.gauchosell.item.Bid;
 import cs48.g05.bbc2016.gauchosell.item.Item;
 import cs48.g05.bbc2016.gauchosell.util.Constants;
+import cs48.g05.bbc2016.gauchosell.util.GauchoSell;
 
 /**
  * Created by icema_000 on 5/13/2016.
@@ -126,7 +127,7 @@ public class MyItemsActivity extends FeedsActivity{
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
                 if(convertView == null) {
-                    LayoutInflater inflater = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                    LayoutInflater inflater = (LayoutInflater) getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE);
                     convertView = inflater.inflate(R.layout.list_item_2, null);
                 }
                 TextView winningBidUsername = (TextView) convertView.findViewById(R.id.text1);

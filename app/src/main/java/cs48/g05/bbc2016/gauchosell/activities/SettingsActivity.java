@@ -1,4 +1,4 @@
-package cs48.g05.bbc2016.gauchosell;
+package cs48.g05.bbc2016.gauchosell.activities;
 
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -11,8 +11,10 @@ import android.widget.TextView;
 
 import com.firebase.client.Firebase;
 
+import cs48.g05.bbc2016.gauchosell.R;
 import cs48.g05.bbc2016.gauchosell.login.LoginActivity;
 import cs48.g05.bbc2016.gauchosell.util.Constants;
+import cs48.g05.bbc2016.gauchosell.util.GauchoSell;
 
 //import com.firebase.client.core.view.View;
 

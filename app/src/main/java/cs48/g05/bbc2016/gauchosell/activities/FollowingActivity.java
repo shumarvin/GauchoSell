@@ -1,4 +1,4 @@
-package cs48.g05.bbc2016.gauchosell;
+package cs48.g05.bbc2016.gauchosell.activities;
 
 import android.os.Bundle;
 import android.view.View;
@@ -8,8 +8,10 @@ import android.widget.ListView;
 import com.firebase.client.Firebase;
 import com.firebase.client.Query;
 
+import cs48.g05.bbc2016.gauchosell.R;
 import cs48.g05.bbc2016.gauchosell.item.Item;
 import cs48.g05.bbc2016.gauchosell.util.Constants;
+import cs48.g05.bbc2016.gauchosell.util.GauchoSell;
 
 /**
  * Created by icema_000 on 5/13/2016.
@@ -21,11 +23,10 @@ public class FollowingActivity extends FeedsActivity {
         ListView list = (ListView) findViewById(R.id.listView);
 
         firebaseRef = new Firebase(Constants.FIREBASE_URL + "/" + Constants.FIREBASE_LOCATION_ITEMS);
-        Query queryRef = firebaseRef.orderByChild("likers/"+GauchoSell.user.getAccount().getUsername()+"/username").equalTo(GauchoSell.user.getAccount().getUsername());
+        Query queryRef = firebaseRef.orderByChild("likers/"+ GauchoSell.user.getAccount().getUsername()+"/username").equalTo(GauchoSell.user.getAccount().getUsername());
         list.setAdapter(initializeFeed(queryRef));
-
-
     }
+
     //Changes the like behavior when initializing the feed. When you press the like button, it removes
     //the item from the likes feed
     @Override

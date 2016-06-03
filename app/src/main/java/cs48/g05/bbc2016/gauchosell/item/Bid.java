@@ -11,16 +11,14 @@ public class Bid {
     private Timestamp date;
     private String username;
     private double amount;
-    private UUID itemId;
     private boolean highestBid;
     private String email;
 
     public Bid(){}
-    public Bid(Timestamp date, String username, double amount, UUID itemId, String email){
+    public Bid(Timestamp date, String username, double amount, String email){
         this.date=date;
         this.username=username;
         this.amount=amount;
-        this.itemId=itemId;
         this.highestBid=false;
         this.email=email;
     }
@@ -36,10 +34,6 @@ public class Bid {
     public double getAmount() { return amount; }
 
     public void setAmount(double amount) { this.amount = amount; }
-
-    public UUID getItemId() { return itemId; }
-
-    public void setItemId(UUID itemId) { this.itemId = itemId; }
 
     public boolean getHighestBid() {
         return highestBid;
