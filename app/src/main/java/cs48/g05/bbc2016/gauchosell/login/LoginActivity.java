@@ -90,9 +90,6 @@ public class LoginActivity extends BaseActivity {
                 //get info on user, and change to home screen
                 buildAccount();
                 clearForm();
-//                MyBidsFeed bids = queryBids(); //TODO: this is just some pseudocode but
-//                MyItemsFeed items = queryItems(); //We probably want ot do something similar to this
-//                FollowingFeed following = queryFollowing();
                 //GauchoSell.user.loginUser(userAccount, bids, items, following);
                 Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                 startActivity(intent);
